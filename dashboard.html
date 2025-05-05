@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dashboard - Recipy</title>
+    <link rel="stylesheet" href="css/styles.css" />
+    <link rel="stylesheet" href="css/dashboard.css" />
+    <script
+      src="https://kit.fontawesome.com/yourkit.js"
+      crossorigin="anonymous"
+    ></script>
+    <!-- Solo si usas iconos -->
+  </head>
+  <body>
+    <nav class="navbar">
+      <div class="logo">recipy</div>
+      <ul class="nav-links">
+        <li><a href="#">Dashboard</a></li>
+        <li><a href="#">Explore</a></li>
+        <li><a href="#">Profile</a></li>
+        <li><a href="#">Logout</a></li>
+      </ul>
+    </nav>
+
+    <div class="dashboard-container">
+      <div class="dashboard-header">
+        <div class="user-info">
+          <img
+            src="img/user.png"
+            alt="User Avatar"
+            class="user-avatar"
+          />
+          <h1>Laura’s Kitchen</h1>
+        </div>
+        <a href="#" class="btn-primary add-recipe-btn">+ Add New Recipe</a>
+      </div>
+
+      <div class="tabs">
+        <input type="radio" id="tab1" name="tab" checked />
+        <label for="tab1">My Recipes</label>
+
+        <input type="radio" id="tab2" name="tab" />
+        <label for="tab2">Saved Recipes</label>
+
+        <div class="tab-content" id="content1">
+          <div class="recipes-grid">
+            <div class="recipe-card">Recipe 1</div>
+            <div class="recipe-card">Recipe 2</div>
+            <div class="recipe-card">Recipe 3</div>
+            <div class="recipe-card">Recipe 4</div>
+            <p class="no-recipes">You haven't added any recipes yet.</p>
+          </div>
+        </div>
+
+        <div class="tab-content" id="content2">
+          <div class="recipes-grid">
+            <p class="no-recipes">You haven't saved any recipes yet.</p>
+          </div>
+          <div class="explore-more">
+            <a href="#" class="btn-secondary">Explore More Recipes</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

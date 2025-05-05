@@ -1,0 +1,145 @@
+/* Fondo decorativo */
+.background-shape {
+  position: absolute;
+  border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
+  opacity: 0.15;
+  z-index: 0;
+}
+
+.shape1 {
+  width: 500px;
+  height: 500px;
+  background: linear-gradient(135deg, #10d48e, #0caa71);
+  top: -200px;
+  left: -150px;
+}
+
+.shape2 {
+  width: 400px;
+  height: 400px;
+  background: linear-gradient(135deg, #10d48e, #0caa71);
+  bottom: -180px;
+  right: -120px;
+}
+
+/* Logo */
+.logo-login {
+  display: block;
+  text-align: center;
+  margin-top: 2rem;
+  color: #10d48e;
+  text-decoration: none;
+  user-select: none;
+  z-index: 2;
+}
+
+/* Contenedor del registro (igual que login) */
+.login-container {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+  max-width: 100%;
+  padding: 2rem;
+  z-index: 2;
+  display: flex;
+  justify-content: center;
+}
+
+.login-box {
+  background-color: #fff;
+  padding: 3.5rem 2.5rem;
+  border-radius: 24px;
+  box-shadow: 0 8px 15px #0caa71;
+  width: 100%;
+  max-width: 460px;
+  text-align: center;
+  transition: box-shadow 0.3s ease;
+}
+
+.login-box h2 {
+  margin-bottom: 2rem;
+  font-weight: 600;
+  color: #222;
+}
+
+/* Campos de entrada */
+.login-box input[type="email"],
+.login-box input[type="password"],
+.login-box input[type="text"] {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  margin-bottom: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 12px;
+  font-size: 1rem;
+  outline: none;
+  transition: border-color 0.3s ease;
+}
+
+.login-box input:focus {
+  border-color: #10d48e;
+}
+
+/* Botón */
+.login-box button {
+  width: 100%;
+  padding: 0.75rem;
+  background-color: #10d48e;
+  color: #fff;
+  border: none;
+  border-radius: 12px;
+  font-weight: 600;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.login-box button:hover {
+  background-color: #0caa71;
+}
+
+.remember-me {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.95rem;
+  color: #555;
+  margin-left: 0.25rem;
+  margin-bottom: 1.5rem;
+}
+
+.remember-me input[type="checkbox"] {
+  width: 16px;
+  height: 16px;
+  accent-color: #10d48e; 
+}
+
+/* Enlaces */
+.extra-links {
+  margin-top: 1.5rem;
+  font-size: 0.9rem;
+  color: #555;
+}
+
+.extra-links a {
+  color: #10d48e;
+  text-decoration: none;
+}
+
+.extra-links a:hover {
+  text-decoration: underline;
+}
+
+.back-home {
+  display: block;
+  margin-top: 0.5rem;
+  font-size: 0.9rem;
+  color: #10d48e;
+  text-decoration: none;
+}
+
+.back-home:hover {
+  text-decoration: underline;
+}

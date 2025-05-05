@@ -1,0 +1,150 @@
+/* NAVBAR ya debe estar en styles.css */
+
+/* Contenedor general */
+.dashboard-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem 1rem;
+}
+
+/* Header con título y botón */
+.dashboard-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  margin-bottom: 2rem;
+}
+
+.user-info {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.user-avatar {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid #10d48e;
+}
+
+.dashboard-header h1 {
+  font-size: 2rem;
+  margin: 0;
+  color: #222;
+}
+
+.add-recipe-btn {
+  background-color: #10d48e;
+  color: #fff;
+  padding: 0.75rem 1.5rem;
+  border-radius: 30px;
+  text-decoration: none;
+  font-weight: 600;
+  transition: background-color 0.3s ease;
+}
+
+.add-recipe-btn:hover {
+  background-color: #0caa71;
+}
+
+/* TABS */
+.tabs {
+  margin-bottom: 2rem;
+}
+
+.tabs input[type="radio"] {
+  display: none;
+}
+
+.tabs label {
+  display: inline-block;
+  padding: 0.75rem 1.5rem;
+  background-color: #f2f2f2;
+  border-radius: 20px;
+  cursor: pointer;
+  margin-right: 1rem;
+  font-weight: 600;
+  transition: background-color 0.3s ease;
+}
+
+.tabs label:hover {
+  background-color: #ddd;
+}
+
+input#tab1:checked ~ label[for="tab1"],
+input#tab2:checked ~ label[for="tab2"] {
+  background-color: #10d48e;
+  color: #fff;
+}
+
+.tab-content {
+  display: none;
+  margin-top: 2.5rem;
+}
+
+#tab1:checked ~ #content1,
+#tab2:checked ~ #content2 {
+  display: block;
+}
+
+.recipes-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 2rem;
+}
+
+.recipe-card {
+  background-color: #fdfdfd;
+  border: 1px solid #ddd;
+  border-radius: 12px;
+  padding: 2rem;
+  text-align: center;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  transition: transform 0.3s ease;
+}
+
+.recipe-card:hover {
+  transform: translateY(-5px);
+}
+
+.no-recipes {
+  grid-column: 1 / -1;
+  text-align: center;
+  color: #777;
+  font-size: 1.1rem;
+}
+
+.no-recipes {
+  grid-column: 1 / -1;
+  text-align: center;
+  color: #777;
+  font-size: 1.1rem;
+}
+
+.explore-more {
+  text-align: center;
+  margin-top: 2rem;
+}
+
+.btn-secondary {
+  background-color: #f2f2f2;
+  color: #10d48e;
+  padding: 0.75rem 1.5rem;
+  border-radius: 20px;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.btn-secondary:hover {
+  background-color: #ddd;
+}
+
+@media (min-width: 1200px) {
+  .dashboard-container {
+    padding-left: 3rem;
+    padding-right: 3rem;
+  }
+}
