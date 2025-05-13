@@ -28,15 +28,21 @@
             $error = $_GET['error'];
             $mensaje = '';
 
-            if ($error == 1) {
-              $mensaje = "❌ This email address is currently in use. Try signing in.";
+            if ($error == 0)  {
+              $mensaje = "❌ Please enter a username.";
+            } elseif ($error == 1) {
+              $mensaje = "❌ This username is currently in use. Try a different one.";
             } elseif ($error == 2) {
-              $mensaje = "❌ Please enter your full name.";
+              $mensaje = "❌ Please enter your email.";
             } elseif ($error == 3) {
-              $mensaje = "❌ Please enter a password.";
+              $mensaje = "❌ This email address is currently in use. Try signing in.";
             } elseif ($error == 4) {
-              $mensaje = "❌ Both passwords must be the same.";
+              $mensaje = "❌ Please enter your name.";
             } elseif ($error == 5) {
+              $mensaje = "❌ Please enter a password.";
+            } elseif ($error == 6) {
+              $mensaje = "❌ Both passwords must be the same.";
+            } elseif ($error == 7) {
               $mensaje = "❌ Something went wrong. Please try again.";
             }
 

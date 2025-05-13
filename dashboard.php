@@ -1,6 +1,17 @@
 <?php
-session_start();
-$usuario = $_SESSION['usuario'] ?? null;
+  session_start();
+  $username = $_SESSION['username'] ?? null;
+  $dbconn = pg_connect("host=localhost port=5432 dbname=tsw user=postgres password=123456")
+          or die('Could not connect: ' . pg_last_error());
+
+  $q0 = "SELECT * FROM users WHERE username = $1";
+  $result = pg_query_params($dbconn, $q0, array($username));
+
+  if (!($tuple = pg_fetch_array($result, null, PGSQL_ASSOC))) {
+      echo "<h1>Query error</h1>";
+  }
+
+  $name=$tuple['name']
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -35,7 +46,7 @@ $usuario = $_SESSION['usuario'] ?? null;
             alt="User Avatar"
             class="user-avatar"
           />
-          <h1><?php echo $usuario; ?>’s Kitchen</h1>
+          <h1><?php echo $name; ?>’s Kitchen</h1>
         </div>
         <a href="#" class="btn-primary add-recipe-btn">+ Add New Recipe</a>
       </div>
