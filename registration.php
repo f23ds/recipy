@@ -14,15 +14,49 @@ if ($dbconn) {
     $result = pg_query_params($dbconn, $q1, array($email));
 
     if ($tuple = pg_fetch_array($result, null, PGSQL_ASSOC)) {
-        echo "<h1>Spiacente, l'indirizzo email non è disponibile.</h1>
-              Se vuoi, <a href='../login/index.html'>clicca qui per loggarti</a>";
+        header("Location: register.php?error=1");
+        exit;
     } else {
         $nome = $_POST['name'];
+        $cap = 11111;
+        $password = $_POST['password'];
+        $confirm_pw = $_POST['confirm_pw'];
+        
+        // Validación 1: Nombre vacío
+        if (trim($nome) === '') {
+            header("Location: register.php?error=2");
+            exit;
+        }
+
+        // Validación 2: Nombre sin espacio (sin apellido)
+        if (strpos($nome, ' ') === false) {
+            header("Location: register.php?error=2");
+            exit;
+        }
+
+        // Validación 3: Email vacío
+        if (trim($email) === '') {
+            header("Location: register.php?error=5");
+            exit;
+        }
+
+        // Validación 4: Contraseña vacía
+        if (trim($password) === '') {
+            header("Location: register.php?error=3");
+            exit;
+        }
+
+        // Validación 6: Contraseñas no coinciden
+        if ($password !== $confirm_pw) {
+            header("Location: register.php?error=4");
+            exit;
+        }
+
         $partes = explode(" ", $nome);
         $nome = $partes[0];
         $cognome = $partes[1];
-        $cap = 11111;
-        $password = password_hash($_POST['password'], PASSWORD_DEFAULT);
+
+        $password = password_hash($password, PASSWORD_DEFAULT);
 
         $q2 = "INSERT INTO utente (email, nome, cognome, password, cap) VALUES ($1, $2, $3, $4, $5)";
         $data = pg_query_params($dbconn, $q2, array($email, $nome, $cognome, $password, $cap));
@@ -33,7 +67,7 @@ if ($dbconn) {
             header("Location: dashboard.php");
             exit;
         } else {
-            header("Location: registration.html");
+            header("Location: register.php?error=5");
             exit;
         }
     }
