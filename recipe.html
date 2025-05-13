@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Receta - Recipy</title>
+    <link rel="stylesheet" href="css/styles.css" />
+    <link rel="stylesheet" href="css/recipe.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&display=swap" rel="stylesheet" />
+  </head>
+  <body>
+    <nav class="navbar">
+      <div class="logo">recipy</div>
+      <ul class="nav-links">
+        <li><a href="#">Dashboard</a></li>
+        <li><a href="#">Explore</a></li>
+        <li><a href="#">Profile</a></li>
+        <li><a href="#">Logout</a></li>
+      </ul>
+    </nav>
+
+    <main class="recipe-container">
+        <div class="recipe-header">
+            <img src="img/recipe.png" alt="Recipe Image" class="recipe-image" />
+          
+            <div class="recipe-meta">
+                <p class="recipe-author">
+                  by <a href="profile.php?user=laura_kitchen" class="author-name-link">@laura_kitchen</a>
+                </p>
+              
+                <div class="interaction-block">
+                  <button class="btn-save">Save Recipe</button>
+                </div>
+              </div>
+              
+          
+
+      <section class="recipe-content">
+        <p class="recipe-description">
+          A classic Roman pasta dish made with eggs, cheese, pancetta, and pepper. Quick, creamy, and comforting.
+        </p>
+
+        <h2>Ingredients</h2>
+        <ul class="ingredients">
+          <li>200g spaghetti</li>
+          <li>2 eggs</li>
+          <li>100g pancetta</li>
+          <li>50g grated parmesan</li>
+          <li>Freshly ground black pepper</li>
+        </ul>
+
+        <h2>Steps</h2>
+        <ol class="steps">
+          <li>Boil the pasta in salted water until al dente.</li>
+          <li>Fry the pancetta until golden and crispy.</li>
+          <li>Mix eggs and cheese in a bowl.</li>
+          <li>Drain pasta and quickly mix with egg-cheese mixture and pancetta.</li>
+          <li>Serve with extra parmesan and black pepper.</li>
+        </ol>
+      </section>
+
+      <section class="comments">
+        <h3>Comments</h3>
+        <div class="comment">
+          <strong>@foodlover99:</strong> This was amazing!
+        </div>
+        <div class="comment">
+          <strong>@veganchef:</strong> I used tofu instead of pancetta — perfect!
+        </div>
+      
+        <form class="comment-form">
+          <input type="text" placeholder="Write a comment..." required />
+          <button type="submit">Post</button>
+        </form>
+      </section>
+      
+    </main>
+  </body>
+</html>

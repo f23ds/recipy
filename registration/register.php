@@ -11,13 +11,14 @@
   <div class="background-shape shape1"></div>
   <div class="background-shape shape2"></div>
 
-  <a href="index.html" class="logo logo-login">recipy</a>
+  <a href="../index.html" class="logo logo-login">recipy</a>
 
   <div class="login-container">
     <div class="login-box">
       <h2>Create an account</h2>
       <form action="registration.php" method="POST" name="myForm">
-        <input type="text" name="name" placeholder="Name and surname">
+        <input type="text" name="name" placeholder="Name">
+        <input type="text" name="username" placeholder="Username">
         <input type="email" name="email" placeholder="Email address">
         <input type="password" name="password" placeholder="Password">
         <input type="password" name="confirm_pw" placeholder="Confirm password">
