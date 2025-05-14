@@ -25,6 +25,7 @@
       src="https://kit.fontawesome.com/yourkit.js"
       crossorigin="anonymous"
     ></script>
+    <script src="load_authors_recipes.js"></script>
     <!-- Solo si usas iconos -->
   </head>
   <body>
@@ -59,12 +60,7 @@
         <label for="tab2">Saved Recipes</label>
 
         <div class="tab-content" id="content1">
-          <div class="recipes-grid">
-            <div class="recipe-card">Recipe 1</div>
-            <div class="recipe-card">Recipe 2</div>
-            <div class="recipe-card">Recipe 3</div>
-            <div class="recipe-card">Recipe 4</div>
-            <p class="no-recipes">You haven't added any recipes yet.</p>
+          <div class="recipes-grid" id='resultado'>
           </div>
         </div>
 
