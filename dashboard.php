@@ -25,7 +25,7 @@
       src="https://kit.fontawesome.com/yourkit.js"
       crossorigin="anonymous"
     ></script>
-    <script src="load_authors_recipes.js"></script>
+    <script src="load_dashboard.js"></script>
     <!-- Solo si usas iconos -->
   </head>
   <body>
@@ -33,7 +33,7 @@
       <div class="logo">recipy</div>
       <ul class="nav-links">
         <li><a href="#">Dashboard</a></li>
-        <li><a href="#">Explore</a></li>
+        <li><a href="explore.html">Explore</a></li>
         <li><a href="#">Profile</a></li>
         <li><a href="#logout">Logout</a></li>
       </ul>
@@ -72,11 +72,40 @@
 
         <div class="tab-content" id="content1">
           <div class="recipes-grid" id='resultado'>
+          <?php
+            $query = "SELECT id, title, diners, ingredients, instructions FROM recipes WHERE author = $1";
+            $result = pg_query_params($dbconn, $query, [$username]);
+
+            if (pg_num_rows($result) > 0) {
+              while ($row = pg_fetch_assoc($result)) {
+                echo '<div class="recipe-card" id="receta-' . $row['id'] . '">';
+                echo '<a href="recipe.php?recipe_id=' . $row['id'] . '">' . htmlspecialchars($row['title']) . '</a>';
+                echo '</div>';
+              }
+            } else {
+              echo "<p class=no-recipes>You haven't added any recipes yet.</p>";
+            }
+          ?>
           </div>
         </div>
 
         <div class="tab-content" id="content2">
           <div class="recipes-grid" id='resultado2'>
+            <?php
+              $query = "SELECT r.* FROM recipes r JOIN saved_recipes s ON r.id = s.recipe_id WHERE s.username = $1;";
+              $result = pg_query_params($dbconn, $query, [$username]);
+
+
+              if (pg_num_rows($result) > 0) {
+                while ($row = pg_fetch_assoc($result)) {
+                  echo '<div class="recipe-card" id="receta-' . $row['id'] . '">';
+                  echo '<a href="recipe.php?recipe_id=' . $row['id'] . '">' . htmlspecialchars($row['title']) . '</a>';
+                  echo '</div>';
+                }
+              } else {
+                echo "<p class=no-recipes>You haven't saved any recipes yet.</p>";
+              }
+            ?>
           </div>
           <div class="explore-more">
             <a href="#" class="btn-secondary">Explore More Recipes</a>
