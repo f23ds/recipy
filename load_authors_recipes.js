@@ -51,7 +51,7 @@ function showSavedRecipes(recetas) {
     if (recetas.length == 0) {
         const p = document.createElement('p');
         p.classList.add("no-recipes");
-        p.innerHTML = "You haven't added any recipes yet.";
+        p.innerHTML = "You haven't saved any recipes yet.";
         contenedor.appendChild(p);
         return;
     }
@@ -119,5 +119,29 @@ document.addEventListener("DOMContentLoaded", () => {
                 icon.classList.add("fa-regular");
             }
         });
+});
+
+document.addEventListener("DOMContentLoaded", () => {
+
+    const logoutLink = document.querySelector('.nav-links a[href="#logout"]');
+    const modal = document.getElementById('logout-modal');
+    const cancelBtn = document.getElementById('cancel-logout');
+
+    if (logoutLink && modal && cancelBtn) {
+        logoutLink.addEventListener('click', (e) => {
+            e.preventDefault();
+            modal.classList.add('active');
+        });
+
+        cancelBtn.addEventListener('click', () => {
+            modal.classList.remove('active');
+        });
+
+        window.addEventListener('click', (e) => {
+            if (e.target === modal) {
+                modal.classList.remove('active');
+            }
+        });
+    }
 });
 
