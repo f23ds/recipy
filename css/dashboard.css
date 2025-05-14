@@ -153,3 +153,70 @@ input#tab2:checked ~ label[for="tab2"] {
     padding-right: 3rem;
   }
 }
+
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.4);
+  display: none;
+  justify-content: center;
+  align-items: center;
+  z-index: 999;
+}
+
+.modal-overlay.active {
+  display: flex;
+}
+
+.modal-content {
+  background-color: white;
+  padding: 2rem;
+  border-radius: 16px;
+  text-align: center;
+  max-width: 400px;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+.modal-content h3 {
+  margin-bottom: 1.5rem;
+  color: #222;
+}
+
+.modal-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.btn-confirm,
+.btn-cancel {
+  padding: 0.6rem 1.4rem;
+  border-radius: 30px;
+  font-weight: 600;
+  border: none;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: background-color 0.3s ease;
+}
+
+.btn-confirm {
+  background-color: #10d48e;
+  color: white;
+  text-decoration: none;
+}
+
+.btn-confirm:hover {
+  background-color: #0caa71;
+}
+
+.btn-cancel {
+  background-color: #f2f2f2;
+  color: #444;
+}
+
+.btn-cancel:hover {
+  background-color: #e0e0e0;
+}

@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dashboard - Recipy</title>
+    <link rel="stylesheet" href="css/styles.css" />
+    <link rel="stylesheet" href="css/dashboard.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+    />
+    <script src="load_authors_recipes.js"></script>
+    <!-- Solo si usas iconos -->
+  </head>
+  <script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const logoutLink = document.querySelector('.nav-links a[href="#logout"]');
+    const modal = document.getElementById('logout-modal');
+    const cancelBtn = document.getElementById('cancel-logout');
+
+    if (logoutLink && modal && cancelBtn) {
+      logoutLink.addEventListener('click', (e) => {
+        e.preventDefault();
+        modal.classList.add('active');
+      });
+
+      cancelBtn.addEventListener('click', () => {
+        modal.classList.remove('active');
+      });
+
+      window.addEventListener('click', (e) => {
+        if (e.target === modal) {
+          modal.classList.remove('active');
+        }
+      });
+    }
+  });
+</script>
+
+  <body>
+    <nav class="navbar">
+      <div class="logo">recipy</div>
+      <ul class="nav-links">
+        <li><a href="#">Dashboard</a></li>
+        <li><a href="#">Explore</a></li>
+        <li><a href="#">Profile</a></li>
+        <li><a href="#logout">Logout</a></li>
+      </ul>
+    </nav>
+    <!-- Logout Modal -->
+    <div class="modal-overlay" id="logout-modal">
+      <div class="modal-content">
+        <h3>Are you sure you want to logout?</h3>
+        <div class="modal-buttons">
+          <a href="logout.php" class="btn-confirm">Yes, logout</a>
+          <button class="btn-cancel" id="cancel-logout">Cancel</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="dashboard-container">
+      <div class="dashboard-header">
+        <div class="user-info">
+          <img src="img/user.png" alt="User Avatar" class="user-avatar" />
+        </div>
+        <a href="#" class="btn-primary add-recipe-btn">+ Add New Recipe</a>
+      </div>
+
+      <div class="tabs">
+        <input type="radio" id="tab1" name="tab" checked />
+        <label for="tab1">My Recipes</label>
+
+        <input type="radio" id="tab2" name="tab" />
+        <label for="tab2">Saved Recipes</label>
+
+        <div class="tab-content" id="content1">
+          <div class="recipes-grid" id="resultado"></div>
+        </div>
+
+        <div class="tab-content" id="content2">
+          <div class="recipes-grid">
+            <p class="no-recipes">You haven't saved any recipes yet.</p>
+          </div>
+          <div class="explore-more">
+            <a href="#" class="btn-secondary">Explore More Recipes</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

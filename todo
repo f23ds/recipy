@@ -11,3 +11,5 @@ Color: #10d48e
     Explicación de la aplicación: get started, explore...
 
 - Quitarle la posibilidad de seleccionar el texto del titulo
+- Terminar la página de explore e incorporar el buscador correctamente
+- Botón de logout y lógica de logout

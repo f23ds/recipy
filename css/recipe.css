@@ -2,6 +2,8 @@
   max-width: 1000px;
   margin: 0 auto;
   padding: 2rem 1rem;
+  position: relative;
+  z-index: 2;
   /* box-shadow: 0 0 60px rgba(16, 212, 142, 0.06); */
   /* border-radius: 20px; */
 }
@@ -118,6 +120,7 @@
   display: flex;
   gap: 0.75rem;
   margin-top: 1rem;
+  margin-bottom: 2rem;
 }
 
 .comment-form input {
