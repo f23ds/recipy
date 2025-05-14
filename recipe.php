@@ -12,6 +12,9 @@
       echo "<h1>Query error</h1>";
   }
 
+  session_start();
+  $_SESSION['exploring_recipe_id']=$id;
+
   $title=$tuple['title'];
   $diners=$tuple['diners'];
   $ingredientes_raw = $tuple['ingredients'];
@@ -37,23 +40,7 @@
       href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&display=swap"
       rel="stylesheet"
     />
-    <script>
-      document.addEventListener("DOMContentLoaded", () => {
-        const likeBtn = document.querySelector(".btn-like");
-        const icon = likeBtn.querySelector("i");
-
-        likeBtn.addEventListener("click", () => {
-          likeBtn.classList.toggle("liked");
-          if (likeBtn.classList.contains("liked")) {
-            icon.classList.remove("fa-regular");
-            icon.classList.add("fa-solid");
-          } else {
-            icon.classList.remove("fa-solid");
-            icon.classList.add("fa-regular");
-          }
-        });
-      });
-    </script>
+    <script src="load_authors_recipes.js"></script>
   </head>
   <body>
     <nav class="navbar">

@@ -35,9 +35,20 @@
         <li><a href="#">Dashboard</a></li>
         <li><a href="#">Explore</a></li>
         <li><a href="#">Profile</a></li>
-        <li><a href="#">Logout</a></li>
+        <li><a href="#logout">Logout</a></li>
       </ul>
     </nav>
+
+    <!-- Logout Modal -->
+    <div class="modal-overlay" id="logout-modal">
+      <div class="modal-content">
+        <h3>Are you sure you want to logout?</h3>
+        <div class="modal-buttons">
+          <a href="index.html" class="btn-confirm">Yes, logout</a>
+          <button class="btn-cancel" id="cancel-logout">Cancel</button>
+        </div>
+      </div>
+    </div>
 
     <div class="dashboard-container">
       <div class="dashboard-header">
@@ -65,8 +76,7 @@
         </div>
 
         <div class="tab-content" id="content2">
-          <div class="recipes-grid">
-            <p class="no-recipes">You haven't saved any recipes yet.</p>
+          <div class="recipes-grid" id='resultado2'>
           </div>
           <div class="explore-more">
             <a href="#" class="btn-secondary">Explore More Recipes</a>
