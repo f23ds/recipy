@@ -162,3 +162,11 @@
   to { opacity: 1; transform: translateY(0); }
 }
 
+.error {
+  color: red;
+  font-size: 0.9em;
+  margin-top: -8px;
+  margin-bottom: 10px;
+}
+
+

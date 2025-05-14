@@ -6,6 +6,7 @@
   <title>Registro - Recipy</title>
   <link rel="stylesheet" href="../css/styles.css" />
   <link rel="stylesheet" href="../css/auth.css" />
+  <script src="validateForm.js"></script>
 </head>
 <body>
   <div class="background-shape shape1"></div>
@@ -16,12 +17,17 @@
   <div class="login-container">
     <div class="login-box">
       <h2>Create an account</h2>
-      <form action="registration.php" method="POST" name="myForm">
+      <form action="registration.php" method="POST" name="myForm" onsubmit="return validateForm()">
         <input type="text" name="name" placeholder="Name">
+        <p class="error" id="error-name"></p>
         <input type="text" name="username" placeholder="Username">
+        <p class="error" id="error-surname"></p>
         <input type="email" name="email" placeholder="Email address">
+        <p class="error" id="error-email"></p>
         <input type="password" name="password" placeholder="Password">
+        <p class="error" id="error-password"></p>
         <input type="password" name="confirm_pw" placeholder="Confirm password">
+        <p class="error" id="error-confirm_pw"></p>
 
         <?php
           if (isset($_GET['error'])) {
@@ -29,22 +35,12 @@
             $mensaje = '';
 
             if ($error == 0)  {
-              $mensaje = "❌ Please enter a username.";
-            } elseif ($error == 1) {
               $mensaje = "❌ This username is currently in use. Try a different one.";
-            } elseif ($error == 2) {
-              $mensaje = "❌ Please enter your email.";
-            } elseif ($error == 3) {
+            } elseif ($error == 1) {
               $mensaje = "❌ This email address is currently in use. Try signing in.";
-            } elseif ($error == 4) {
-              $mensaje = "❌ Please enter your name.";
-            } elseif ($error == 5) {
-              $mensaje = "❌ Please enter a password.";
-            } elseif ($error == 6) {
-              $mensaje = "❌ Both passwords must be the same.";
-            } elseif ($error == 7) {
+            } elseif ($error == 2) {
               $mensaje = "❌ Something went wrong. Please try again.";
-            }
+            } 
 
             if ($mensaje !== '') {
               echo "<div class=\"accessing-error\">$mensaje</div>";

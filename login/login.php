@@ -14,7 +14,7 @@ if ($dbconn) {
     $result = pg_query_params($dbconn, $q1, array($email));
 
     if (!($tuple = pg_fetch_array($result, null, PGSQL_ASSOC))) {
-        header("Location: login_form.php?error=1");
+        header("Location: login_form.php?error=0");
         exit;
     } else {
         $password_input = $_POST['password'];

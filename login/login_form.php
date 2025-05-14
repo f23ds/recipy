@@ -22,25 +22,36 @@
             type="email"
             name="email"
             placeholder="Email address"
-            required
           />
+          <p class="error" id="error-email"></p>
           <input
             type="password"
             name="password"
             placeholder="Password"
-            required
           />
+          <p class="error" id="error-password"></p>
 
           <div class="remember-me">
             <input type="checkbox" id="remember" name="remember" />
             <label for="remember">Remember me</label>
           </div>
 
-          <?php if (isset($_GET['error']) && $_GET['error'] == 1): ?>
-            <div class="accessing-error">
-              ❌ Incorrect credentials. Try again.
-            </div>
-          <?php endif; ?>
+          <?php
+            if (isset($_GET['error'])) {
+              $error = $_GET['error'];
+              $mensaje = '';
+
+              if ($error == 0)  {
+                $mensaje = "❌ This email is not registered. Try signing up.";
+              } elseif ($error == 1) {
+                $mensaje = "❌ Incorrect password. Try again.";
+              } 
+
+              if ($mensaje !== '') {
+                echo "<div class=\"accessing-error\">$mensaje</div>";
+              }
+            }
+          ?>
 
           <button type="submit">Entrar</button>
         </form>

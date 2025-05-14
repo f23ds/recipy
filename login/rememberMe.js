@@ -3,6 +3,20 @@ function alertRmb() {
     const passwordInput = document.getElementsByName("password")[0]
     // la variabile remember contiene un valore booleano
     // ( dipendente dallo stato della checkbox )
+    if (!emailInput.value) {
+        document.getElementById("error-email").textContent = "❌ Please enter your email.";
+        return false;
+    } else {
+        document.getElementById("error-email").textContent = ""
+    }
+
+    if (!passwordInput.value) {
+        document.getElementById("error-password").textContent = "❌ Please enter a password.";
+        return false;
+    } else {
+        document.getElementById("error-password").textContent = ""
+    }
+
     var remember = document.getElementById("remember").checked;
     if (remember) {
         localStorage.setItem("email", emailInput.value);
