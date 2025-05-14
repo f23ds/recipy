@@ -25,7 +25,10 @@ function showRecipes(recetas) {
         const div = document.createElement('div');
         div.classList.add("recipe-card");
         div.id = `receta-${receta.id}`;
-        div.innerHTML = `${receta.title}`;
+        div.innerHTML = `<a href=recipe.php?recipe_id=${receta.id}>${receta.title}</a>`;
+        div.addEventListener("click", function () {
+            mostrarDetalleReceta(receta);
+        });
         contenedor.appendChild(div);
     });
 }
