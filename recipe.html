@@ -6,7 +6,32 @@
     <title>Receta - Recipy</title>
     <link rel="stylesheet" href="css/styles.css" />
     <link rel="stylesheet" href="css/recipe.css" />
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&display=swap" rel="stylesheet" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+    />
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&display=swap"
+      rel="stylesheet"
+    />
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        const likeBtn = document.querySelector(".btn-like");
+        const icon = likeBtn.querySelector("i");
+
+        likeBtn.addEventListener("click", () => {
+          likeBtn.classList.toggle("liked");
+          if (likeBtn.classList.contains("liked")) {
+            icon.classList.remove("fa-regular");
+            icon.classList.add("fa-solid");
+          } else {
+            icon.classList.remove("fa-solid");
+            icon.classList.add("fa-regular");
+          }
+        });
+      });
+    </script>
   </head>
   <body>
     <nav class="navbar">
@@ -20,24 +45,30 @@
     </nav>
 
     <main class="recipe-container">
-        <div class="recipe-header">
-            <img src="img/recipe.png" alt="Recipe Image" class="recipe-image" />
-          
-            <div class="recipe-meta">
-                <p class="recipe-author">
-                  by <a href="profile.php?user=laura_kitchen" class="author-name-link">@laura_kitchen</a>
-                </p>
-              
-                <div class="interaction-block">
-                  <button class="btn-save">Save Recipe</button>
-                </div>
-              </div>
-              
-          
+      <div class="recipe-header">
+        <img src="img/recipe.png" alt="Recipe Image" class="recipe-image" />
+
+        <div class="recipe-header-content">
+          <div>
+            <h1 class="recipe-title">Spaghetti alla Carbonara</h1>
+            <p class="recipe-author">
+              by
+              <a href="profile.php?user=laura_kitchen" class="author-name-link"
+                >@laura_kitchen</a
+              >
+            </p>
+          </div>
+
+          <button class="btn-like" aria-label="Save Recipe">
+            <i class="fa-regular fa-heart"></i>
+          </button>
+        </div>
+      </div>
 
       <section class="recipe-content">
         <p class="recipe-description">
-          A classic Roman pasta dish made with eggs, cheese, pancetta, and pepper. Quick, creamy, and comforting.
+          A classic Roman pasta dish made with eggs, cheese, pancetta, and
+          pepper. Quick, creamy, and comforting.
         </p>
 
         <h2>Ingredients</h2>
@@ -54,7 +85,9 @@
           <li>Boil the pasta in salted water until al dente.</li>
           <li>Fry the pancetta until golden and crispy.</li>
           <li>Mix eggs and cheese in a bowl.</li>
-          <li>Drain pasta and quickly mix with egg-cheese mixture and pancetta.</li>
+          <li>
+            Drain pasta and quickly mix with egg-cheese mixture and pancetta.
+          </li>
           <li>Serve with extra parmesan and black pepper.</li>
         </ol>
       </section>
@@ -65,15 +98,15 @@
           <strong>@foodlover99:</strong> This was amazing!
         </div>
         <div class="comment">
-          <strong>@veganchef:</strong> I used tofu instead of pancetta — perfect!
+          <strong>@veganchef:</strong> I used tofu instead of pancetta —
+          perfect!
         </div>
-      
+
         <form class="comment-form">
           <input type="text" placeholder="Write a comment..." required />
           <button type="submit">Post</button>
         </form>
       </section>
-      
     </main>
   </body>
 </html>

@@ -2,6 +2,8 @@
   max-width: 1000px;
   margin: 0 auto;
   padding: 2rem 1rem;
+  /* box-shadow: 0 0 60px rgba(16, 212, 142, 0.06); */
+  /* border-radius: 20px; */
 }
 
 .recipe-header {
@@ -17,25 +19,59 @@
   box-shadow: 0 6px 12px rgba(0, 0, 0, 0.05);
 }
 
+.recipe-header-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-top: 1.5rem;
+  position: relative;
+}
+
 .recipe-title {
   font-size: 2.2rem;
   color: #0caa71;
-  margin: 0.5rem 0;
+  margin: 0;
 }
 
 .recipe-author {
   font-size: 1rem;
   color: #666;
-  margin: 0;
+  margin: 0.25rem 0 0;
 }
 
-.recipe-author span {
+.author-name-link {
   color: #10d48e;
+  text-decoration: none;
   font-weight: 600;
 }
 
+.author-name-link:hover {
+  text-decoration: underline;
+}
+
+.btn-like {
+  background: none;
+  border: none;
+  font-size: 1.8rem;
+  color: #ccc;
+  cursor: pointer;
+  padding: 0;
+  transition: color 0.3s ease;
+  position: relative;
+  top: 0.25rem;
+  margin-right: 0.25rem;
+}
+
+.btn-like.liked i {
+  color: #10d48e;
+}
+
+/* Sección de contenido */
 .recipe-content h2 {
   margin-top: 2rem;
+  margin-bottom: 1rem;
   font-size: 1.4rem;
   color: #10d48e;
 }
@@ -44,6 +80,7 @@
   font-size: 1.1rem;
   color: #444;
   margin-bottom: 2rem;
+  hyphens: auto;
 }
 
 .ingredients,
@@ -56,53 +93,6 @@
 .steps li {
   margin-bottom: 0.75rem;
   line-height: 1.5;
-}
-
-.recipe-meta {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  flex-wrap: wrap;
-  margin-bottom: 1.5rem;
-}
-
-.author-block {
-  font-weight: 500;
-}
-
-.author-name-link {
-  color: #10d48e;
-  text-decoration: none;
-  font-size: 1rem;
-  font-weight: 600;
-}
-
-.author-name-link:hover {
-  text-decoration: underline;
-}
-
-.btn-save {
-  background: #10d48e;
-  color: white;
-  border: none;
-  padding: 0.5rem 1.25rem;
-  border-radius: 30px;
-  font-weight: 600;
-  cursor: pointer;
-  font-size: 0.95rem;
-  transition: background-color 0.3s ease;
-}
-
-.btn-save:hover {
-  background-color: #0caa71;
-}
-
-.interaction-block {
-  text-align: right;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-end;
-  gap: 0.25rem;
 }
 
 /* Comentarios */
