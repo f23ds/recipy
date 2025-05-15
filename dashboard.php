@@ -33,7 +33,7 @@
       <div class="logo">recipy</div>
       <ul class="nav-links">
         <li><a href="#">Dashboard</a></li>
-        <li><a href="explore.html">Explore</a></li>
+        <li><a href="explore.php">Explore</a></li>
         <li><a href="#">Profile</a></li>
         <li><a href="#logout">Logout</a></li>
       </ul>

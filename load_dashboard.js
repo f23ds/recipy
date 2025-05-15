@@ -71,3 +71,30 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 });
 
+function saveRecipe(id) {
+    fetch("exploringRecipy.php?exploring_recipe_id=" + id).then(res => res.json())
+        .then(success => {
+            if (success) {
+                return true;
+            } else {
+                return false;
+            }
+        });
+}
+
+window.addEventListener("DOMContentLoaded", () => {
+    document.querySelectorAll('.carousel-wrapper').forEach(wrapper => {
+      const track = wrapper.querySelector('.carousel-track');
+      const btnLeft = wrapper.querySelector('.left');
+      const btnRight = wrapper.querySelector('.right');
+
+      btnLeft.addEventListener('click', () => {
+        track.scrollLeft -= 300;
+      });
+
+      btnRight.addEventListener('click', () => {
+        track.scrollLeft += 300;
+      });
+    });
+  });
+
