@@ -106,19 +106,28 @@
       </section>
 
       <section class="comments">
-        <h3>Comments</h3>
         <div class="comment">
-          <strong>@foodlover99:</strong> This was amazing!
-        </div>
-        <div class="comment">
-          <strong>@veganchef:</strong> I used tofu instead of pancetta —
-          perfect!
-        </div>
+        <?php
+          $query = "SELECT * FROM comments WHERE recipe_id = $1;";
+          $result1 = pg_query_params($dbconn, $query, [$id]);
 
-        <form class="comment-form">
-          <input type="text" placeholder="Write a comment..." required />
-          <button type="submit">Post</button>
-        </form>
+          if (pg_num_rows($result1) > 0) {
+            while ($row = pg_fetch_assoc($result1)) {
+              echo '<div class="comment">
+                      <strong>@'.$row['author'].':</strong> '.$row['content'].
+                    '</div>';
+            }
+          } else {
+            echo "<p class=no-recipes>There are no comments on this recipe.</p>";
+          }
+        ?>
+
+        <?php
+          echo '<form class="comment-form" name="comment_form" onsubmit=checkComment() action=addComment.php?recipe_id='.$id.'>
+                  <input type="text" name="comment" placeholder="Write a comment..." />
+                  <button type="submit">Post</button>
+                </form>';
+        ?>
       </section>
     </main>
   </body>

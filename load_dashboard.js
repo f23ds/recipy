@@ -132,3 +132,13 @@ window.addEventListener("DOMContentLoaded", () => {
     });
 });
 
+function checkComment() {
+    const comment = document.comment_form.comment.value.trim();
+
+    if (!comment) {
+      document.getElementById("error-name").textContent = "❌ Please enter your name.";
+      return false;
+    }
+    return true;
+}
+

@@ -10,12 +10,19 @@ if (!isset($_SESSION['username'])) {
 
 $username = $_SESSION['username'];
 
-if (!isset($_GET['recipe_id'])) {
+if (!isset($_GET['exploring_recipe_id'])) {
     echo "No recipe is selected.";
     exit;
 }
 
-$recipe_id=$_GET['recipe_id'];
+$recipe_id=$_SESSION['exploring_recipe_id'];
+
+if (!isset($_GET['code']) && isset($_GET['recipe_id'])) {
+    echo "Cannot perform any action.";
+    exit;
+}
+
+$code = $_GET['code'];
 
 // Conectamos a PostgreSQL
 $conn = pg_connect("host=localhost port=5432 dbname=tsw user=postgres password=123456")
