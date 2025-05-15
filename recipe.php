@@ -123,7 +123,7 @@
         ?>
 
         <?php
-          echo '<form class="comment-form" name="comment_form" onsubmit=checkComment() action=addComment.php?recipe_id='.$id.'>
+          echo '<form class="comment-form" method="POST" name="comment_form" onsubmit=checkComment() action=addComment.php>
                   <input type="text" name="comment" placeholder="Write a comment..." />
                   <button type="submit">Post</button>
                 </form>';
