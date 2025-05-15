@@ -1,8 +1,30 @@
-.explore-header {
-  max-width: 1200px;
-  margin: 2rem auto 0;
-  padding: 0 1rem;
-  text-align: center;
+.search-bar {
+  position: relative;
+  max-width: 400px;
+  margin: 0 auto;
+}
+
+.search-bar i {
+  position: absolute;
+  top: 50%;
+  right: 1rem;
+  transform: translateY(-50%);
+  color: #aaa;
+  font-size: 1rem;
+  pointer-events: none;
+}
+
+.search-input {
+  width: 100%;
+  padding: 0.75rem 2.5rem 0.75rem 1.25rem; 
+  border: 1px solid #ccc;
+  font-size: 1rem;
+  outline: none;
+  transition: border-color 0.3s ease;
+}
+
+.search-input:focus {
+  border-color: #10d48e;
 }
 
 .search-input {
@@ -17,29 +39,6 @@
 
 .search-input:focus {
   border-color: #10d48e;
-}
-
-.tag-filter {
-  margin-top: 1rem;
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
-  gap: 0.5rem;
-}
-
-.tag-filter button {
-  background: #f2f2f2;
-  border: none;
-  padding: 0.5rem 1rem;
-  border-radius: 20px;
-  font-size: 0.9rem;
-  color: #10d48e;
-  cursor: pointer;
-}
-
-.tag-filter button:hover {
-  background: #10d48e;
-  color: white;
 }
 
 .explore-section {
@@ -108,7 +107,7 @@
 }
 
 .recipe-card:hover {
-  transform: box-shadow(0 4px 16px rgba(0, 0, 0, 0.1));
+  transform: 0 4px 16px rgba(0, 0, 0, 0.1);
 }
 
 .recipe-card img {
@@ -165,5 +164,9 @@
 }
 
 .like-btn:hover {
+  color: #10d48e;
+}
+
+.like-btn.liked i {
   color: #10d48e;
 }
