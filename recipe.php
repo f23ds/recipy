@@ -14,6 +14,7 @@
 
   session_start();
   $_SESSION['exploring_recipe_id']=$id;
+  $username = $_SESSION['username'] ?? null;
 
   $title=$tuple['title'];
   $diners=$tuple['diners'];
@@ -67,9 +68,17 @@
             ?>
           </div>
 
-          <button class="btn-like" aria-label="Save Recipe">
-            <i class="fa-regular fa-heart"></i>
-          </button>
+          <?php
+            $query = "SELECT * FROM recipes WHERE author = $1 AND id = $2;";
+            $result1 = pg_query_params($dbconn, $query, [$username, $id]);
+
+            if (pg_num_rows($result1)==0) {
+              echo '
+                    <button class="btn-like" aria-label="Save Recipe">
+                      <i class="fa-regular fa-heart"></i>
+                    </button>';
+            }
+          ?>
         </div>
       </div>
 

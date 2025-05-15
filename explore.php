@@ -14,16 +14,18 @@
 ?>
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Explore Recipes - Recipy</title>
-  <link rel="stylesheet" href="css/explore.css" />
-  <link rel="stylesheet" href="css/styles.css" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
-  <script src="load_dashboard.js"></script>
-</head>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Explore Recipes - Recipy</title>
+    <link rel="stylesheet" href="css/styles.css" />
+    <link rel="stylesheet" href="css/explore.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+    />
+    <script src="./load_dashboard.js" type="application/javascript"></script>
+  </head>
 
 <body>
   <!-- Header -->
@@ -36,16 +38,10 @@
       <li><a href="#">Logout</a></li>
     </ul>
   </nav>
-
   <!-- Search -->
-  <div class="explore-header">
+  <div class="search-bar">
+    <i class="fas fa-search"></i>
     <input type="text" class="search-input" placeholder="Search recipes..." />
-    <div class="tag-filter">
-      <button>#vegan</button>
-      <button>#dessert</button>
-      <button>#quick</button>
-      <button>#pasta</button>
-    </div>
   </div>
 
   <!-- Carousel -->
@@ -64,7 +60,14 @@
               echo '<div class="recipe-info">';
               echo '<a class="recipe-title" href="recipe.php?recipe_id=' . $row['id'] . '">'. htmlspecialchars($row['title']) .'</a>';
               echo '<span class="recipe-user"><a href="#">@'. $row['author'] .'</a></span>';
-              echo '<button class="like-btn" onclick=saveRecipy('.$row['id'].')><i class="fa-regular fa-heart"></i></button>';
+              $query = "SELECT * FROM saved_recipes WHERE username = $1 AND recipe_id = $2;";
+              $result1 = pg_query_params($dbconn, $query, [$username, $row['id']]);
+              
+              if ($result1 && pg_num_rows($result1) > 0) {
+                echo '<button class="like-btn liked" onclick=saveRecipe('.$row['id'].')><i class="fa-solid fa-heart"></i></button>';
+              } else {
+                echo '<button class="like-btn" onclick=saveRecipe('.$row['id'].')><i class="fa-regular fa-heart"></i></button>';
+              }
               echo '</div>';
               echo '</div>';
             }

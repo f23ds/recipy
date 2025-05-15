@@ -48,6 +48,40 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 document.addEventListener("DOMContentLoaded", () => {
+    document.querySelectorAll(".like-btn").forEach((btn) => {
+        btn.addEventListener("click", () => {
+            const icon = btn.querySelector("i");
+
+            if (icon.classList.contains("fa-regular")) {
+                icon.classList.remove("fa-regular");
+                icon.classList.add("fa-solid");
+                btn.classList.add("liked");
+                fetch("saveRecipe.php?code=1").then(res => res.json())
+                    .then(success => {
+                        if (success) {
+                            console.log("Acción completada");
+                        } else {
+                            console.error("Error en la consulta");
+                        }
+                    });
+            } else {
+                icon.classList.remove("fa-solid");
+                icon.classList.add("fa-regular");
+                btn.classList.remove("liked");
+                fetch("saveRecipe.php?code=0").then(res => res.json())
+                .then(success => {
+                    if (success) {
+                        console.log("Acción completada");
+                    } else {
+                        console.error("Error en la consulta");
+                    }
+                });
+            }
+        });
+    });
+});
+
+document.addEventListener("DOMContentLoaded", () => {
 
     const logoutLink = document.querySelector('.nav-links a[href="#logout"]');
     const modal = document.getElementById('logout-modal');
@@ -72,7 +106,7 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 function saveRecipe(id) {
-    fetch("exploringRecipy.php?exploring_recipe_id=" + id).then(res => res.json())
+    fetch("exploringRecipe.php?exploring_recipe_id=" + id).then(res => res.json())
         .then(success => {
             if (success) {
                 return true;
@@ -84,17 +118,17 @@ function saveRecipe(id) {
 
 window.addEventListener("DOMContentLoaded", () => {
     document.querySelectorAll('.carousel-wrapper').forEach(wrapper => {
-      const track = wrapper.querySelector('.carousel-track');
-      const btnLeft = wrapper.querySelector('.left');
-      const btnRight = wrapper.querySelector('.right');
+        const track = wrapper.querySelector('.carousel-track');
+        const btnLeft = wrapper.querySelector('.left');
+        const btnRight = wrapper.querySelector('.right');
 
-      btnLeft.addEventListener('click', () => {
-        track.scrollLeft -= 300;
-      });
+        btnLeft.addEventListener('click', () => {
+            track.scrollLeft -= 300;
+        });
 
-      btnRight.addEventListener('click', () => {
-        track.scrollLeft += 300;
-      });
+        btnRight.addEventListener('click', () => {
+            track.scrollLeft += 300;
+        });
     });
-  });
+});
 
