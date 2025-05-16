@@ -17,7 +17,7 @@
     <div class="login-container">
       <div class="login-box">
         <h2>Sign in</h2>
-        <form action="login.php" method="POST" onsubmit="return alertRmb()">
+        <form id=login_form>
           <input
             type="email"
             name="email"
@@ -36,22 +36,7 @@
             <label for="remember">Remember me</label>
           </div>
 
-          <?php
-            if (isset($_GET['error'])) {
-              $error = $_GET['error'];
-              $mensaje = '';
-
-              if ($error == 0)  {
-                $mensaje = "❌ This email is not registered. Try signing up.";
-              } elseif ($error == 1) {
-                $mensaje = "❌ Incorrect password. Try again.";
-              } 
-
-              if ($mensaje !== '') {
-                echo "<div class=\"accessing-error\">$mensaje</div>";
-              }
-            }
-          ?>
+          <div class="accessing-error" id=accessing-error></div>
 
           <button type="submit">Entrar</button>
         </form>

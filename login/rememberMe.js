@@ -1,34 +1,71 @@
-function alertRmb() {
-    const emailInput = document.getElementsByName("email")[0];
-    const passwordInput = document.getElementsByName("password")[0]
-    // la variabile remember contiene un valore booleano
-    // ( dipendente dallo stato della checkbox )
-    if (!emailInput.value) {
-        document.getElementById("error-email").textContent = "❌ Please enter your email.";
-        return false;
-    } else {
-        document.getElementById("error-email").textContent = ""
-    }
+function checkLogin() {
+    const errorDiv = document.getElementById("accessing-error");
+    errorDiv.style.display = "none";
 
-    if (!passwordInput.value) {
-        document.getElementById("error-password").textContent = "❌ Please enter a password.";
-        return false;
-    } else {
-        document.getElementById("error-password").textContent = ""
-    }
+    document.getElementById("login_form").addEventListener("submit", function (e) {
 
-    var remember = document.getElementById("remember").checked;
-    if (remember) {
-        localStorage.setItem("email", emailInput.value);
-        localStorage.setItem("password", passwordInput.value);
-        localStorage.setItem("remember", "true");
-    }
-    else {
-        localStorage.setItem("remember", "false");
-    }
+        e.preventDefault();
+        const errorDiv = document.getElementById("accessing-error");
+        errorDiv.textContent = "";
+        errorDiv.style.display = "none";
+
+        const emailInput = document.getElementsByName("email")[0];
+        const passwordInput = document.getElementsByName("password")[0]
+
+        const no_login = true;
+
+        if (!emailInput.value) {
+            document.getElementById("error-email").textContent = "❌ Please enter your email.";
+            no_login = false;
+        } else {
+            document.getElementById("error-email").textContent = ""
+        }
+
+        if (!passwordInput.value) {
+            document.getElementById("error-password").textContent = "❌ Please enter a password.";
+            no_login = false;
+        } else {
+            document.getElementById("error-password").textContent = ""
+        }
+
+        if (!no_login) return;
+
+        fetch("login.php", {
+            method: "POST",
+            headers: { "Content-Type": "application/x-www-form-urlencoded" },
+            body: new URLSearchParams({
+                email: emailInput.value,
+                password: passwordInput.value
+            })
+        })
+            .then(res => res.json())
+            .then(data => {
+                if (data.success) {
+                    var remember = document.getElementById("remember").checked;
+                    if (remember) {
+                        localStorage.setItem("email", emailInput.value);
+                        localStorage.setItem("password", passwordInput.value);
+                        localStorage.setItem("remember", "true");
+                    }
+                    else {
+                        localStorage.setItem("remember", "false");
+                    }
+                    window.location.href = data.redirect;
+                } else if (data.email) {
+                    document.getElementById("accessing-error").textContent = data.email;
+                    errorDiv.style.display = "block";
+                } else if (data.password) {
+                    document.getElementById("accessing-error").textContent = data.password;
+                    errorDiv.style.display = "block";
+                } else {
+                    document.getElementById("accessing-error").textContent = data.error;
+                    errorDiv.style.display = "block";
+                }
+            });
+    });
 }
 
-// rememberMe.js
+document.addEventListener('DOMContentLoaded', checkLogin);
 
 window.onload = function () {
     const emailInput = document.getElementsByName("email")[0];

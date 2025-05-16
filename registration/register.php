@@ -17,7 +17,7 @@
   <div class="login-container">
     <div class="login-box">
       <h2>Create an account</h2>
-      <form action="registration.php" method="POST" name="myForm" onsubmit="return validateForm()">
+      <form name=myForm id="register_form">
         <input type="text" name="name" placeholder="Name">
         <p class="error" id="error-name"></p>
         <input type="text" name="username" placeholder="Username">
@@ -29,24 +29,7 @@
         <input type="password" name="confirm_pw" placeholder="Confirm password">
         <p class="error" id="error-confirm_pw"></p>
 
-        <?php
-          if (isset($_GET['error'])) {
-            $error = $_GET['error'];
-            $mensaje = '';
-
-            if ($error == 0)  {
-              $mensaje = "❌ This username is currently in use. Try a different one.";
-            } elseif ($error == 1) {
-              $mensaje = "❌ This email address is currently in use. Try signing in.";
-            } elseif ($error == 2) {
-              $mensaje = "❌ Something went wrong. Please try again.";
-            } 
-
-            if ($mensaje !== '') {
-              echo "<div class=\"accessing-error\">$mensaje</div>";
-            }
-          }
-        ?>
+        <div class="accessing-error" id="accessing-error"></div>
 
         <button type="submit">Sign up</button>
       </form>

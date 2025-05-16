@@ -1,6 +1,6 @@
 <?php
 if ($_SERVER["REQUEST_METHOD"] != "POST") {
-    header("Location: /");
+    echo json_encode(["error" => "Invalid request method."]);
     exit;
 } else {
     $dbconn = pg_connect("host=localhost port=5432 dbname=tsw user=postgres password=123456")
@@ -14,7 +14,7 @@ if ($dbconn) {
     $result = pg_query_params($dbconn, $q0, array($username));
 
     if ($tuple = pg_fetch_array($result, null, PGSQL_ASSOC)) {
-        header("Location: register.php?error=0");
+        echo json_encode(["username" => "❌ This username is currently in use. Try a different one."]);
         exit;
     }
 
@@ -23,7 +23,7 @@ if ($dbconn) {
     $result = pg_query_params($dbconn, $q1, array($email));
 
     if ($tuple = pg_fetch_array($result, null, PGSQL_ASSOC)) {
-        header("Location: register.php?error=1");
+        echo json_encode(["email" => "❌ This email address is currently in use. Try signing in."]);
         exit;
     } else {
         $name = $_POST['name'];
@@ -38,10 +38,12 @@ if ($dbconn) {
         if ($data) {
             session_start();
             $_SESSION['username']=$username;
-            header("Location: ../dashboard.php");
-            exit;
+            echo json_encode([
+                "success" => true,
+                "redirect" => "../dashboard.php"
+            ]);
         } else {
-            header("Location: register.php?error=2");
+            echo json_encode(["error" => "❌ Something went wrong. Please try again."]);
             exit;
         }
     }
