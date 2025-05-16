@@ -44,7 +44,7 @@
       <div class="modal-content">
         <h3>Are you sure you want to logout?</h3>
         <div class="modal-buttons">
-          <a href="index.html" class="btn-confirm">Yes, logout</a>
+          <a href="logout.php" class="btn-confirm">Yes, logout</a>
           <button class="btn-cancel" id="cancel-logout">Cancel</button>
         </div>
       </div>
