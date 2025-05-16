@@ -1,3 +1,21 @@
+<?php
+
+  session_start();
+  $username = $_SESSION['username'] ?? null;
+  $dbconn = pg_connect("host=localhost port=5432 dbname=tsw user=postgres password=123456")
+          or die('Could not connect: ' . pg_last_error());
+
+  $q0 = "SELECT * FROM users WHERE username = $1";
+  $result = pg_query_params($dbconn, $q0, array($username));
+
+  if (!($tuple = pg_fetch_array($result, null, PGSQL_ASSOC))) {
+      echo "<h1>Query error</h1>";
+  }
+
+  $name=$tuple['name'];
+  $email=$tuple['email'];
+
+?>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -35,24 +53,26 @@
         <input type="file" id="profileImage" accept="image/*" hidden />
       </div>
 
-      <form class="edit-form" method="POST">
+      <form class="edit-form" id="edit_profile">
         <label for="username">Username</label>
         <input
           type="text"
           id="username"
           name="username"
-          value="@laura_kitchen"
+          value="<?php echo $username ?>"
           readonly
         />
+        <p class="error" id="error-username"></p>
 
         <label for="email">Email</label>
         <input
           type="email"
           id="email"
           name="email"
-          value="laura@example.com"
+          value="<?php echo $email ?>"
           readonly
         />
+        <p class="error" id="error-email"></p>
 
         <label for="password">New Password <span>(optional)</span></label>
         <input
@@ -62,36 +82,18 @@
           readonly
           placeholder="••••••••"
         />
+        <p class="error" id="error"></p>
 
         <div class="form-actions">
           <button type="button" id="editBtn" class="btn-secondary">
             Edit All
           </button>
-          <button type="submit" class="btn-primary">Save Changes</button>
-          <a href="dashboard.html" class="btn-cancel">Cancel</a>
+          <button type="submit" class="btn-primary" id=saveBtn>Save Changes</button>
+          <a href="dashboard.php" class="btn-cancel">Cancel</a>
         </div>
       </form>
     </main>
 
-    <script>
-      // Previsualización de imagen
-      const profileInput = document.getElementById("profileImage");
-      const preview = document.getElementById("profilePreview");
-
-      profileInput.addEventListener("change", () => {
-        const file = profileInput.files[0];
-        if (file) {
-          preview.src = URL.createObjectURL(file);
-        }
-      });
-
-      // Activar edición de campos
-      const editBtn = document.getElementById("editBtn");
-      editBtn.addEventListener("click", () => {
-        document.querySelectorAll(".edit-form input").forEach((el) => {
-          el.removeAttribute("readonly");
-        });
-      });
-    </script>
+    <script src="edit_profile.js"></script>
   </body>
 </html>

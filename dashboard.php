@@ -34,7 +34,7 @@
       <ul class="nav-links">
         <li><a href="#">Dashboard</a></li>
         <li><a href="explore.php">Explore</a></li>
-        <li><a href="#">Profile</a></li>
+        <li><a href="edit-profile.php">Profile</a></li>
         <li><a href="#logout">Logout</a></li>
       </ul>
     </nav>
