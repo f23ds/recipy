@@ -106,28 +106,8 @@
       </section>
 
       <section class="comments">
-        <div class="comment">
-        <?php
-          $query = "SELECT * FROM comments WHERE recipe_id = $1;";
-          $result1 = pg_query_params($dbconn, $query, [$id]);
-
-          if (pg_num_rows($result1) > 0) {
-            while ($row = pg_fetch_assoc($result1)) {
-              echo '<div class="comment">
-                      <strong>@'.$row['author'].':</strong> '.$row['content'].
-                    '</div>';
-            }
-          } else {
-            echo "<p class=no-recipes>There are no comments on this recipe.</p>";
-          }
-        ?>
-
-        <?php
-          echo '<form class="comment-form" method="POST" name="comment_form" onsubmit=checkComment() action=addComment.php>
-                  <input type="text" name="comment" placeholder="Write a comment..." />
-                  <button type="submit">Post</button>
-                </form>';
-        ?>
+        <div class="comment" id=comments>
+        </div>
       </section>
     </main>
   </body>
