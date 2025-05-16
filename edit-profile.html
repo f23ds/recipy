@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Edit Profile - Recipy</title>
+    <link rel="stylesheet" href="css/styles.css" />
+    <link rel="stylesheet" href="css/edit-profile.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+    />
+  </head>
+  <body>
+    <nav class="navbar">
+      <div class="logo">recipy</div>
+      <ul class="nav-links">
+        <li><a href="#">Dashboard</a></li>
+        <li><a href="#">Explore</a></li>
+        <li><a href="#">Profile</a></li>
+        <li><a href="#">Logout</a></li>
+      </ul>
+    </nav>
+
+    <main class="edit-profile-container">
+      <h1>Edit your profile</h1>
+
+      <div class="profile-image-section">
+        <label for="profileImage" class="profile-img-label">
+          <img id="profilePreview" src="img/user.png" alt="Profile Picture" />
+          <div class="edit-icon">
+            <i class="fas fa-pen"></i>
+          </div>
+        </label>
+        <input type="file" id="profileImage" accept="image/*" hidden />
+      </div>
+
+      <form class="edit-form" method="POST">
+        <label for="username">Username</label>
+        <input
+          type="text"
+          id="username"
+          name="username"
+          value="@laura_kitchen"
+          readonly
+        />
+
+        <label for="email">Email</label>
+        <input
+          type="email"
+          id="email"
+          name="email"
+          value="laura@example.com"
+          readonly
+        />
+
+        <label for="password">New Password <span>(optional)</span></label>
+        <input
+          type="password"
+          id="password"
+          name="password"
+          readonly
+          placeholder="••••••••"
+        />
+
+        <div class="form-actions">
+          <button type="button" id="editBtn" class="btn-secondary">
+            Edit All
+          </button>
+          <button type="submit" class="btn-primary">Save Changes</button>
+          <a href="dashboard.html" class="btn-cancel">Cancel</a>
+        </div>
+      </form>
+    </main>
+
+    <script>
+      // Previsualización de imagen
+      const profileInput = document.getElementById("profileImage");
+      const preview = document.getElementById("profilePreview");
+
+      profileInput.addEventListener("change", () => {
+        const file = profileInput.files[0];
+        if (file) {
+          preview.src = URL.createObjectURL(file);
+        }
+      });
+
+      // Activar edición de campos
+      const editBtn = document.getElementById("editBtn");
+      editBtn.addEventListener("click", () => {
+        document.querySelectorAll(".edit-form input").forEach((el) => {
+          el.removeAttribute("readonly");
+        });
+      });
+    </script>
+  </body>
+</html>
