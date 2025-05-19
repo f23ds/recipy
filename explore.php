@@ -28,16 +28,8 @@
   </head>
 
 <body>
-  <!-- Header -->
-  <nav class="navbar">
-    <div class="logo">recipy</div>
-    <ul class="nav-links">
-      <li><a href="#">Dashboard</a></li>
-      <li><a href="#">Explore</a></li>
-      <li><a href="#">Profile</a></li>
-      <li><a href="#">Logout</a></li>
-    </ul>
-  </nav>
+  <?php include 'components/header.php'; ?>
+  
   <!-- Search -->
   <div class="search-bar">
     <div class="search-wrapper">

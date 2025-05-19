@@ -30,15 +30,7 @@
     />
   </head>
   <body>
-    <nav class="navbar">
-      <div class="logo">recipy</div>
-      <ul class="nav-links">
-        <li><a href="#">Dashboard</a></li>
-        <li><a href="#">Explore</a></li>
-        <li><a href="#">Profile</a></li>
-        <li><a href="#">Logout</a></li>
-      </ul>
-    </nav>
+    <?php include 'components/header.php'; ?>
 
     <main class="edit-profile-container">
       <h1>Edit your profile</h1>

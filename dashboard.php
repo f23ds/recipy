@@ -27,29 +27,9 @@
       crossorigin="anonymous"
     ></script>
     <script src="load_dashboard.js"></script>
-    <!-- Solo si usas iconos -->
   </head>
   <body>
-    <nav class="navbar">
-      <div class="logo">recipy</div>
-      <ul class="nav-links">
-        <li><a href="dashboard.php">Dashboard</a></li>
-        <li><a href="explore.php">Explore</a></li>
-        <li><a href="edit-profile.php">Profile</a></li>
-        <li><a href="#logout">Logout</a></li>
-      </ul>
-    </nav>
-
-    <!-- Logout Modal -->
-    <div class="modal-overlay" id="logout-modal">
-      <div class="modal-content">
-        <h3>Are you sure you want to logout?</h3>
-        <div class="modal-buttons">
-          <a href="logout.php" class="btn-confirm">Yes, logout</a>
-          <button class="btn-cancel" id="cancel-logout">Cancel</button>
-        </div>
-      </div>
-    </div>
+    <?php include 'components/header.php'; ?>
 
     <div class="dashboard-container">
       <div class="dashboard-header">

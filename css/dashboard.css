@@ -97,22 +97,48 @@ input#tab2:checked ~ label[for="tab2"] {
 }
 
 .recipe-dashboard-card {
-  background-color: #fdfdfd;
-  border: 1px solid #ddd;
-  border-radius: 12px;
-  padding: 2rem;
-  text-align: center;
+  background: white;
+  border-radius: 16px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
-  transition: transform 0.3s ease;
-}
-
-.recipe-dashboard-card a {
-  color: inherit;
-  text-decoration: none;
+  overflow: hidden;
+  transition: transform 0.2s ease;
+  width: 260px;
+  flex: 0 0 260px;
+  display: flex;
+  flex-direction: column;
 }
 
 .recipe-dashboard-card:hover {
-  transform: translateY(-5px);
+  transform: translateY(-4px);
+}
+
+.recipe-dashboard-card img {
+  width: 100%;
+  height: 160px;
+  object-fit: cover;
+}
+
+.card-info {
+  padding: 0.75rem 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.card-title {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #0caa71;
+  text-decoration: none;
+}
+
+.card-title:hover {
+  color: #088d5d;
+}
+
+.card-sub {
+  font-size: 0.9rem;
+  color: #666;
 }
 
 .no-recipes {
@@ -154,69 +180,4 @@ input#tab2:checked ~ label[for="tab2"] {
   }
 }
 
-.modal-overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.4);
-  display: none;
-  justify-content: center;
-  align-items: center;
-  z-index: 999;
-}
 
-.modal-overlay.active {
-  display: flex;
-}
-
-.modal-content {
-  background-color: white;
-  padding: 2rem;
-  border-radius: 16px;
-  text-align: center;
-  max-width: 400px;
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
-}
-
-.modal-content h3 {
-  margin-bottom: 1.5rem;
-  color: #222;
-}
-
-.modal-buttons {
-  display: flex;
-  justify-content: center;
-  gap: 1rem;
-}
-
-.btn-confirm,
-.btn-cancel {
-  padding: 0.6rem 1.4rem;
-  border-radius: 30px;
-  font-weight: 600;
-  border: none;
-  cursor: pointer;
-  font-size: 1rem;
-  transition: background-color 0.3s ease;
-}
-
-.btn-confirm {
-  background-color: #10d48e;
-  color: white;
-  text-decoration: none;
-}
-
-.btn-confirm:hover {
-  background-color: #0caa71;
-}
-
-.btn-cancel {
-  background-color: #f2f2f2;
-  color: #444;
-}
-
-.btn-cancel:hover {
-  background-color: #e0e0e0;
-}

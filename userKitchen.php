@@ -45,7 +45,6 @@
       crossorigin="anonymous"
     ></script>
     <script src="load_dashboard.js"></script>
-    <!-- Solo si usas iconos -->
   </head>
   <body>
     <nav class="navbar">
