@@ -12,7 +12,7 @@ function checkLogin() {
         const emailInput = document.getElementsByName("email")[0];
         const passwordInput = document.getElementsByName("password")[0]
 
-        const no_login = true;
+        let no_login = true;
 
         if (!emailInput.value) {
             document.getElementById("error-email").textContent = "❌ Please enter your email.";

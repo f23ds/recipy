@@ -43,17 +43,17 @@
     <main class="edit-profile-container">
       <h1>Edit your profile</h1>
 
-      <div class="profile-image-section">
-        <label for="profileImage" class="profile-img-label">
-          <img id="profilePreview" src="img/user.png" alt="Profile Picture" />
-          <div class="edit-icon">
-            <i class="fas fa-pen"></i>
-          </div>
-        </label>
-        <input type="file" id="profileImage" accept="image/*" hidden />
-      </div>
-
       <form class="edit-form" id="edit_profile">
+        <div class="profile-image-section">
+          <label for="profileImage" class="profile-img-label">
+            <img id="profilePreview" src=<?php echo $tuple['profile_pic']?> alt="Profile Picture" />
+            <div class="edit-icon">
+              <i class="fas fa-pen"></i>
+            </div>
+          </label>
+          <input type="file" name="profileImage" id="profileImage" accept="image/*" hidden />
+        </div>
+
         <label for="username">Username</label>
         <input
           type="text"

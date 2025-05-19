@@ -6,6 +6,7 @@
     <title>Add New Recipe - Recipy</title>
     <link rel="stylesheet" href="css/styles.css" />
     <link rel="stylesheet" href="css/add-recipe.css" />
+     <link rel="stylesheet" href="css/auth.css" />
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
@@ -25,15 +26,18 @@
     <main class="add-recipe-container">
       <h1>Add a New Recipe</h1>
 
-      <form class="add-recipe-form" method="POST" enctype="multipart/form-data">
+      <form class="add-recipe-form" name="myForm" id="add_recipe">
         <label for="title">Recipe Title</label>
-        <input type="text" id="title" name="title" placeholder="e.g. Spaghetti Carbonara" required />
+        <input type="text" id="title" name="title" placeholder="e.g. Spaghetti Carbonara"/>
+        <p class="error" id="error-title"></p>
 
-        <label for="servings">Servings</label>
-        <input type="number" id="servings" name="servings" placeholder="e.g. 4" min="1" required />
+        <label for="Diners">Diners</label>
+        <input type="number" id="diners" name="diners" min="1" placeholder="e.g. 4"/>
+        <p class="error" id="error-diners"></p>
 
         <label for="image">Recipe Image</label>
         <input type="file" id="image" name="image" accept="image/*" />
+        <p class="error" id="error-image"></p>
 
         <label for="ingredients">Ingredients</label>
         <textarea
@@ -41,8 +45,8 @@
           name="ingredients"
           rows="5"
           placeholder="e.g. 200g pasta, 2 eggs, 100g pancetta..."
-          required
         ></textarea>
+        <p class="error" id="error-ingredients"></p>
 
         <label for="instructions">Instructions</label>
         <textarea
@@ -50,14 +54,17 @@
           name="instructions"
           rows="6"
           placeholder="Write step-by-step how to prepare the recipe..."
-          required
         ></textarea>
+        <p class="error" id="error-instructions"></p>
+
+        <div class="accessing-error" id=adding-error></div>
 
         <div class="form-actions">
           <button type="submit" class="btn-primary">Submit Recipe</button>
-          <a href="dashboard.html" class="btn-cancel">Cancel</a>
+          <a href="dashboard.php" class="btn-cancel">Cancel</a>
         </div>
       </form>
     </main>
+    <script src="./add-recipe.js" type="application/javascript"></script>
   </body>
 </html>

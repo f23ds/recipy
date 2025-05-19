@@ -1,4 +1,5 @@
 <?php
+session_start();
 if ($_SERVER["REQUEST_METHOD"] != "POST") {
     echo json_encode(["error" => "Invalid request method."]);
     exit;
@@ -13,13 +14,32 @@ if ($dbconn) {
     $q0 = "SELECT * FROM users WHERE username = $1";
     $result = pg_query_params($dbconn, $q0, array($username));
 
-    if ($tuple = pg_fetch_array($result, null, PGSQL_ASSOC)) {
+    if ($tuple = pg_fetch_array($result, null, PGSQL_ASSOC) && $username!==$_SESSION['username']) {
         echo json_encode(["username" => "❌ This username is currently in use. Try a different one."]);
         exit;
     }
 
-    session_start();
     $username = $_SESSION['username'] ?? null;
+
+    $destPath="img/user.png";
+
+    if (isset($_FILES['profileImage']) && $_FILES['profileImage']['error'] === UPLOAD_ERR_OK) {
+        $fileTmpPath = $_FILES['profileImage']['tmp_name'];
+        $fileName = $_FILES['profileImage']['name'];
+        $fileSize = $_FILES['profileImage']['size'];
+        $fileType = $_FILES['profileImage']['type'];
+
+        // Opcional: extensión segura
+        $ext = pathinfo($fileName, PATHINFO_EXTENSION);
+
+        // Ruta final
+        $uploadDir = 'img/profiles/';
+        $newFileName = $_POST['username'] . '.' . $ext;
+        $destPath = $uploadDir . $newFileName;
+
+        move_uploaded_file($fileTmpPath, $destPath);
+
+    }
 
     // Verificar si el correo ya existe
     $q1 = "SELECT * FROM users WHERE email = $1 and username != $2";
@@ -36,12 +56,12 @@ if ($dbconn) {
         if ($password !== "") {
             $password = password_hash($password, PASSWORD_DEFAULT);
 
-            $q2 = "UPDATE users SET username = $1, email = $2, password = $3 WHERE username = $4;";
-            $params = array($new_username, $email, $password, $username); 
+            $q2 = "UPDATE users SET username = $1, email = $2, profile_pic = $5, password = $3 WHERE username = $4;";
+            $params = array($new_username, $email, $password, $username, $destPath); 
 
         } else {
-            $q2 = "UPDATE users SET username = $1, email = $2 WHERE username = $3;";
-            $params = array($new_username, $email, $username); 
+            $q2 = "UPDATE users SET username = $1, email = $2, profile_pic = $4 WHERE username = $3;";
+            $params = array($new_username, $email, $username, $destPath); 
         }
 
         $data = pg_query_params($dbconn, $q2, $params);

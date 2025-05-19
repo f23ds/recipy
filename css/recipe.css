@@ -145,3 +145,20 @@
 .comment-form button:hover {
   background-color: #0caa71;
 }
+
+.delete-icon {
+  position: absolute;
+  top: 0.5rem;
+  right: 0.5rem;
+  background: none;
+  border: none;
+  font-size: 1.8rem;
+  color: #ec1414;
+  cursor: pointer;
+  transition: color 0.3s ease;
+}
+
+.delete-icon:hover {
+  color: #710808;
+}
+

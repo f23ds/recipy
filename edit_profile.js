@@ -27,18 +27,12 @@ function changeProfile() {
 
         e.preventDefault();
 
-        const usernameInput = document.getElementById("username");
-        const emailInput = document.getElementById("email");
-        const passwordInput = document.getElementById("password");
+        const form = document.getElementById("edit_profile");
+        const formData = new FormData(form);
 
         fetch("edit-profile-db.php", {
             method: "POST",
-            headers: { "Content-Type": "application/x-www-form-urlencoded" },
-            body: new URLSearchParams({
-                username: usernameInput.value,
-                email: emailInput.value,
-                password: passwordInput.value
-            })
+            body: formData
         })
             .then(res => res.json())
             .then(data => {
@@ -51,9 +45,9 @@ function changeProfile() {
                         el.setAttribute("readonly", true);
                     });
                 } else if (data.username) {
-                    document.getElementById("error-username").textContent = data.email;
+                    document.getElementById("error-username").textContent = data.username;
                 } else if (data.email) {
-                    document.getElementById("error-email").textContent = data.password;
+                    document.getElementById("error-email").textContent = data.email;
                 } else {
                     document.getElementById("error").textContent = data.error;
                 }

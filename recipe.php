@@ -32,6 +32,7 @@
     <title>Receta - Recipy</title>
     <link rel="stylesheet" href="css/styles.css" />
     <link rel="stylesheet" href="css/recipe.css" />
+    <link rel="stylesheet" href="css/dashboard.css" />
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
@@ -56,11 +57,15 @@
 
     <main class="recipe-container">
       <div class="recipe-header">
-        <img src="img/recipe.png" alt="Recipe Image" class="recipe-image" />
+        <img src=<?php echo $tuple['image']?> alt="Recipe Image" class="recipe-image" />
 
         <div class="recipe-header-content">
           <div>
-            <h1 class="recipe-title"><?php echo $title; ?></h1>
+            <h1 class="recipe-title"><?php echo $title; ?>
+              <?php if ($username === $author): ?>
+                <i class="fa-solid fa-trash delete-icon" id="deleteBtn"></i>
+              <?php endif; ?>
+            </h1>
             <?php
               echo "<p class=\"recipe-author\">
                       by <a href=\"profile.php?user=laura_kitchen\" class=\"author-name-link\">@$author</a>
@@ -110,5 +115,37 @@
         </div>
       </section>
     </main>
+
+    <div class="modal-overlay" id="delete-modal">
+      <div class="modal-content">
+        <h3>Are you sure you want to delete this recipe?</h3>
+        <div class="modal-buttons">
+          <a href="delete.php" class="btn-confirm">Yes, delete</a>
+          <button class="btn-cancel" id="cancel-delete">Cancel</button>
+        </div>
+      </div>
+    </div>
+    <script>
+      const deleteBtn = document.getElementById('deleteBtn');
+      const modal = document.getElementById('delete-modal');
+      const cancelBtn = document.getElementById('cancel-delete');
+            
+      if (deleteBtn && modal && cancelBtn) {
+        deleteBtn.addEventListener('click', () => {
+          modal.classList.add('active');
+        });
+      
+        cancelBtn.addEventListener('click', () => {
+          modal.classList.remove('active');
+        });
+      
+        window.addEventListener('click', (e) => {
+          if (e.target === modal) {
+            modal.classList.remove('active');
+          }
+        });
+      }
+    </script>
+
   </body>
 </html>

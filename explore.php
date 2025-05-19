@@ -56,7 +56,7 @@
           if (pg_num_rows($result) > 0) {
             while ($row = pg_fetch_assoc($result)) {
               echo '<div class="recipe-card">';
-              echo '<img src="img/recipe.png" alt="Recipe" />';
+              echo '<img src='.$row['image'].' alt="Recipe" />';
               echo '<div class="recipe-info">';
               echo '<a class="recipe-title" href="recipe.php?recipe_id=' . $row['id'] . '">'. htmlspecialchars($row['title']) .'</a>';
               echo '<span class="recipe-user"><a href="#">@'. $row['author'] .'</a></span>';

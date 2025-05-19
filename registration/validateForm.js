@@ -15,7 +15,7 @@ function validateForm() {
     const password = document.myForm.password.value.trim();
     const confirm_pw = document.myForm.confirm_pw.value.trim();
 
-    const no_registration = true;
+    let no_registration = true;
 
     if (!name) {
       document.getElementById("error-name").textContent = "❌ Please enter your name.";

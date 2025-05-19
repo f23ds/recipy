@@ -11,7 +11,8 @@
       echo "<h1>Query error</h1>";
   }
 
-  $name=$tuple['name']
+  $name=$tuple['name'];
+  $profile_pic=$tuple['profile_pic']
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -54,13 +55,13 @@
       <div class="dashboard-header">
         <div class="user-info">
           <img
-            src="img/user.png"
+            src=<?php echo $profile_pic; ?>
             alt="User Avatar"
             class="user-avatar"
           />
           <h1><?php echo $name; ?>’s Kitchen</h1>
         </div>
-        <a href="#" class="btn-primary add-recipe-btn">+ Add New Recipe</a>
+        <a href="add-recipe.html" class="btn-primary add-recipe-btn">+ Add New Recipe</a>
       </div>
 
       <div class="tabs">
