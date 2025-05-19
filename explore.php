@@ -40,8 +40,11 @@
   </nav>
   <!-- Search -->
   <div class="search-bar">
-    <i class="fas fa-search"></i>
-    <input type="text" class="search-input" placeholder="Search recipes..." />
+    <div class="search-wrapper">
+      <input type="text" class="search-input" id="search-input" placeholder="Search recipes..." />
+      <i class="fas fa-search"></i>
+    </div>
+    <button id="search-btn">Search</button>
   </div>
 
   <!-- Carousel -->
@@ -50,7 +53,7 @@
     <div class="carousel-wrapper">
       <button class="carousel-btn left"><i class="fas fa-chevron-left"></i></button>
 
-      <div class="carousel-track">
+      <div class="carousel-track" id="carousel-track">
         <!-- Puedes reemplazar esto por includes de PHP -->
         <?php
           if (pg_num_rows($result) > 0) {
@@ -59,7 +62,7 @@
               echo '<img src='.$row['image'].' alt="Recipe" />';
               echo '<div class="recipe-info">';
               echo '<a class="recipe-title" href="recipe.php?recipe_id=' . $row['id'] . '">'. htmlspecialchars($row['title']) .'</a>';
-              echo '<span class="recipe-user"><a href="#">@'. $row['author'] .'</a></span>';
+              echo '<span class="recipe-user"><a href="userKitchen.php?user='.$row['author'].'">@'. $row['author'] .'</a></span>';
               $query = "SELECT * FROM saved_recipes WHERE username = $1 AND recipe_id = $2;";
               $result1 = pg_query_params($dbconn, $query, [$username, $row['id']]);
               
@@ -75,6 +78,7 @@
             echo "<p class=no-recipes>There are no recipes to explore.</p>";
           }
         ?>
+      </div>
 
       <button class="carousel-btn right"><i class="fas fa-chevron-right"></i></button>
     </div>

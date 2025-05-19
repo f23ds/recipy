@@ -96,7 +96,7 @@ input#tab2:checked ~ label[for="tab2"] {
   gap: 2rem;
 }
 
-.recipe-card {
+.recipe-dashboard-card {
   background-color: #fdfdfd;
   border: 1px solid #ddd;
   border-radius: 12px;
@@ -106,12 +106,12 @@ input#tab2:checked ~ label[for="tab2"] {
   transition: transform 0.3s ease;
 }
 
-.recipe-card a {
+.recipe-dashboard-card a {
   color: inherit;
   text-decoration: none;
 }
 
-.recipe-card:hover {
+.recipe-dashboard-card:hover {
   transform: translateY(-5px);
 }
 

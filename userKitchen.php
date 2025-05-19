@@ -1,6 +1,12 @@
 <?php
   session_start();
-  $username = $_SESSION['username'] ?? null;
+  $active_user = $_SESSION['username'] ?? null;
+
+  $username="";
+
+  if (isset($_GET['user'])) {
+    $username = $_GET['user'];
+  }
   $dbconn = pg_connect("host=localhost port=5432 dbname=tsw user=postgres password=123456")
           or die('Could not connect: ' . pg_last_error());
 
@@ -12,7 +18,14 @@
   }
 
   $name=$tuple['name'];
-  $profile_pic=$tuple['profile_pic']
+  $profile_pic=$tuple['profile_pic'];
+
+  $q0 = "SELECT * FROM recipes WHERE author = $1";
+  $result = pg_query_params($dbconn, $q0, array($username));
+
+  if (!($tuple = pg_fetch_array($result, null, PGSQL_ASSOC))) {
+      echo "<h1>Query error</h1>";
+  }
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -21,7 +34,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Dashboard - Recipy</title>
     <link rel="stylesheet" href="css/styles.css" />
+    <link rel="stylesheet" href="css/explore.css" />
     <link rel="stylesheet" href="css/dashboard.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+    />
     <script
       src="https://kit.fontawesome.com/yourkit.js"
       crossorigin="anonymous"
@@ -61,58 +79,41 @@
           />
           <h1><?php echo $name; ?>’s Kitchen</h1>
         </div>
-        <a href="add-recipe.html" class="btn-primary add-recipe-btn">+ Add New Recipe</a>
       </div>
 
-      <div class="tabs">
-        <input type="radio" id="tab1" name="tab" checked />
-        <label for="tab1">My Recipes</label>
+    <section class="explore-section">
+      <div class="carousel-wrapper">
+        <button class="carousel-btn left"><i class="fas fa-chevron-left"></i></button>
 
-        <input type="radio" id="tab2" name="tab" />
-        <label for="tab2">Saved Recipes</label>
-
-        <div class="tab-content" id="content1">
-          <div class="recipes-grid" id='resultado'>
+        <div class="carousel-track" id="carousel-track">
+          <!-- Puedes reemplazar esto por includes de PHP -->
           <?php
-            $query = "SELECT id, title, diners, ingredients, instructions FROM recipes WHERE author = $1";
-            $result = pg_query_params($dbconn, $query, [$username]);
-
             if (pg_num_rows($result) > 0) {
               while ($row = pg_fetch_assoc($result)) {
-                echo '<div class="recipe-dashboard-card" id="receta-' . $row['id'] . '">';
-                echo '<a href="recipe.php?recipe_id=' . $row['id'] . '">' . htmlspecialchars($row['title']) . '</a>';
+                echo '<div class="recipe-card">';
+                echo '<img src='.$row['image'].' alt="Recipe" />';
+                echo '<div class="recipe-info">';
+                echo '<a class="recipe-title" href="recipe.php?recipe_id=' . $row['id'] . '">'. htmlspecialchars($row['title']) .'</a>';
+                echo '<span class="recipe-user"><a href="#">@'. $row['author'] .'</a></span>';
+                $query = "SELECT * FROM saved_recipes WHERE username = $1 AND recipe_id = $2;";
+                $result1 = pg_query_params($dbconn, $query, [$active_user, $row['id']]);
+
+                if ($result1 && pg_num_rows($result1) > 0) {
+                  echo '<button class="like-btn liked" onclick=saveRecipe('.$row['id'].')><i class="fa-solid fa-heart"></i></button>';
+                } else {
+                  echo '<button class="like-btn" onclick=saveRecipe('.$row['id'].')><i class="fa-regular fa-heart"></i></button>';
+                }
+                echo '</div>';
                 echo '</div>';
               }
             } else {
-              echo "<p class=no-recipes>You haven't added any recipes yet.</p>";
+              echo "<p class=no-recipes>There are no recipes to explore.</p>";
             }
           ?>
-          </div>
-        </div>
-
-        <div class="tab-content" id="content2">
-          <div class="recipes-grid" id='resultado2'>
-            <?php
-              $query = "SELECT r.* FROM recipes r JOIN saved_recipes s ON r.id = s.recipe_id WHERE s.username = $1;";
-              $result = pg_query_params($dbconn, $query, [$username]);
-
-
-              if (pg_num_rows($result) > 0) {
-                while ($row = pg_fetch_assoc($result)) {
-                  echo '<div class="recipe-dashboard-card" id="receta-' . $row['id'] . '">';
-                  echo '<a href="recipe.php?recipe_id=' . $row['id'] . '">' . htmlspecialchars($row['title']) . '</a>';
-                  echo '</div>';
-                }
-              } else {
-                echo "<p class=no-recipes>You haven't saved any recipes yet.</p>";
-              }
-            ?>
-          </div>
-          <div class="explore-more">
-            <a href="#" class="btn-secondary">Explore More Recipes</a>
-          </div>
-        </div>
       </div>
+
+      <button class="carousel-btn right"><i class="fas fa-chevron-right"></i></button>
     </div>
+  </section>
   </body>
 </html>

@@ -217,12 +217,74 @@ function showComments(comments) {
 
                     return true;
                 });
-            } 
+            }
         });
 
 }
 
 document.addEventListener('DOMContentLoaded', loadComments);
 
+function renderRecipes(recipes) {
+    const container = document.querySelector('.carousel-track');
+    container.innerHTML = ''; // Limpia el contenido anterior
 
+    if (recipes.length === 0) {
+        const msg = document.createElement('p');
+        msg.className = 'no-recipes';
+        msg.textContent = 'There are no recipes to explore.';
+        container.appendChild(msg);
+        return;
+    }
 
+    recipes.forEach(recipe => {
+        const card = document.createElement('div');
+        card.className = 'recipe-card';
+
+        const img = document.createElement('img');
+        img.src = recipe.image;
+        img.alt = 'Recipe';
+        card.appendChild(img);
+
+        const info = document.createElement('div');
+        info.className = 'recipe-info';
+
+        const title = document.createElement('a');
+        title.className = 'recipe-title';
+        title.href = `recipe.php?recipe_id=${recipe.id}`;
+        title.textContent = recipe.title;
+
+        const user = document.createElement('span');
+        user.className = 'recipe-user';
+        user.innerHTML = `<a href="#">@${recipe.author}</a>`;
+
+        const likeBtn = document.createElement('button');
+        likeBtn.className = 'like-btn' + (recipe.saved ? ' liked' : '');
+        likeBtn.setAttribute('onclick', `saveRecipe(${recipe.id})`);
+        likeBtn.innerHTML = `<i class="${recipe.saved ? 'fa-solid' : 'fa-regular'} fa-heart"></i>`;
+
+        info.appendChild(title);
+        info.appendChild(user);
+        info.appendChild(likeBtn);
+        card.appendChild(info);
+
+        container.appendChild(card);
+    });
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+    const searchBtn = document.getElementById("search-btn");
+    const searchInput = document.getElementById("search-input");
+
+    searchBtn.addEventListener("click", () => {
+        if (searchInput.value != "") {
+            fetch(`search-recipe.php?title=` + searchInput.value)
+                .then(res => res.json())
+                .then(data => {
+                    renderRecipes(data);
+                })
+                .catch(err => {
+                    console.error('Error fetching recipes:', err);
+                });
+        }
+    });
+});

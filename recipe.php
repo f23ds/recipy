@@ -61,15 +61,15 @@
 
         <div class="recipe-header-content">
           <div>
-            <h1 class="recipe-title"><?php echo $title; ?>
+            <h1 class="recipe-title"><?php echo "$title - $diners diners"; ?>
               <?php if ($username === $author): ?>
                 <i class="fa-solid fa-trash delete-icon" id="deleteBtn"></i>
               <?php endif; ?>
             </h1>
             <?php
               echo "<p class=\"recipe-author\">
-                      by <a href=\"profile.php?user=laura_kitchen\" class=\"author-name-link\">@$author</a>
-                    </p>"
+                      by <a href=\"userKitchen.php?user=$author\" class=\"author-name-link\">@$author</a>
+                    </p>";
             ?>
           </div>
 
@@ -120,8 +120,8 @@
       <div class="modal-content">
         <h3>Are you sure you want to delete this recipe?</h3>
         <div class="modal-buttons">
-          <a href="delete.php" class="btn-confirm">Yes, delete</a>
           <button class="btn-cancel" id="cancel-delete">Cancel</button>
+          <a href="delete.php" class="btn-confirm">Yes, delete</a>
         </div>
       </div>
     </div>
