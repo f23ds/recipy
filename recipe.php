@@ -22,6 +22,7 @@
   $ingredientes = explode(',', trim($ingredientes_raw, '{}'));
   $instructions=$tuple['instructions'];
   $author=$tuple['author'];
+  $descr=$tuple['descr'];
 
 ?>
 <!DOCTYPE html>
@@ -89,8 +90,9 @@
 
       <section class="recipe-content">
         <p class="recipe-description">
-          A classic Roman pasta dish made with eggs, cheese, pancetta, and
-          pepper. Quick, creamy, and comforting.
+          <?php
+            echo $descr;
+          ?>
         </p>
 
         <h2>Ingredients</h2>

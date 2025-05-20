@@ -87,7 +87,7 @@
             ?>
           </div>
           <div class="explore-more">
-            <a href="#" class="btn-secondary">Explore More Recipes</a>
+            <a href="explore.php" class="btn-secondary">Explore More Recipes</a>
           </div>
         </div>
       </div>
