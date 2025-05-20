@@ -43,7 +43,7 @@
 
         <div class="extra-links">
           <p>Don't have an account? <a href="../registration/register.php">Sign up</a></p>
-          <a href="../index.html" class="back-home">← Back to home</a>
+          <a href="../index.php" class="back-home">← Back to home</a>
         </div>
       </div>
     </div>

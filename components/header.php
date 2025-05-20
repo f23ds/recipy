@@ -1,15 +1,18 @@
+<?php
+session_start();
+?>
+
 <nav class="navbar">
     <a href="index.php" class="logo">recipy</a>
 
     <div class="navbar-right">
         <ul class="nav-links">
+            <li><a href="contact.php">Contact</a></li>
             <?php if (isset($_SESSION['username'])): ?>
                 <li><a href="dashboard.php">Dashboard</a></li>
                 <li><a href="explore.php">Explore</a></li>
                 <li><a href="edit-profile.php">Profile</a></li>
                 <li><a href="#" id="logoutLink">Logout</a></li>
-            <?php else: ?>
-                <li><a href="contact.php">Contact</a></li>
             <?php endif; ?>
         </ul>
 
