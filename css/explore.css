@@ -1,6 +1,6 @@
 .search-bar {
   position: relative;
-  max-width: 600px;   /* antes 400px */
+  max-width: 600px; 
   margin: 0 auto;
 }
 
@@ -49,7 +49,7 @@
 
 .explore-section {
   max-width: 1480px;
-  margin: 3rem auto;
+  margin: 3rem auto 0 auto;
   padding: 0 1rem;
 }
 
@@ -143,7 +143,7 @@
 }
 
 .recipe-user .diners-count {
-  font-size: 1.2rem; 
+  font-size: 1.2rem;
   color: #555;
 }
 
@@ -181,7 +181,7 @@
 /* Contenedor general */
 .user-kitchen-container {
   max-width: 1480px;
-  margin: 5rem auto 0 auto; /* ← este 2rem es la distancia desde arriba */
+  margin: 1rem auto -2.5rem auto; 
   padding: 2rem 1rem;
 }
 
@@ -200,8 +200,8 @@
 }
 
 .user-kitchen-avatar {
-  width: 50px;
-  height: 50px;
+  width: 100px;
+  height: 100px;
   border-radius: 50%;
   object-fit: cover;
   border: 2px solid #10d48e;
@@ -210,5 +210,7 @@
 .user-kitchen-header h1 {
   font-size: 2rem;
   margin: 0;
+  padding-left: 0.5rem;
   color: #222;
 }
+

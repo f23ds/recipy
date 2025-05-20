@@ -29,10 +29,7 @@ if (!($tuple = pg_fetch_array($result, null, PGSQL_ASSOC))) {
   <?php include 'components/header.php'; ?>
 
   <!-- Search -->
-  <div class="search-bar">
-    <input type="text" class="search-input" id="search-input" placeholder="Search recipes..." />
-    <i class="fas fa-search" id="search-btn"></i>
-  </div>
+  <?php include 'components/search-bar.php'; ?>
 
   <!-- Carousel -->
   <section class="explore-section">

@@ -12,7 +12,7 @@
   <div class="background-shape shape1"></div>
   <div class="background-shape shape2"></div>
 
-  <a href="../index.html" class="logo logo-login">recipy</a>
+  <a href="../index.php" class="logo logo-login">recipy</a>
 
   <div class="login-container">
     <div class="login-box">
