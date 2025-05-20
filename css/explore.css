@@ -49,7 +49,7 @@
 
 .explore-section {
   max-width: 1480px;
-  margin: 0.2rem auto;
+  margin: 3rem auto;
   padding: 0 1rem;
 }
 
@@ -101,8 +101,8 @@
 
 /* Tarjetas */
 .recipe-card {
-  flex: 0 0 460px;
-  height: 400px;
+  flex: 0 0 340px;
+  height: 300px;
   background: white;
   border-radius: 16px;
   overflow: hidden;
@@ -132,29 +132,25 @@
 }
 
 .recipe-title {
-  font-size: 1.6rem;
+  font-size: 1.4rem;
+  font-weight: 600;
   color: #0caa71;
-  margin: 0;
-  color: inherit;
   text-decoration: none;
 }
 
 .recipe-title:hover {
-  color: #03593b;
-  text-decoration: none;
+  color: #088d5d;
 }
 
 .recipe-user .diners-count {
-  font-size: 1.3rem; /* o lo que quieras */
+  font-size: 1.2rem; 
   color: #555;
 }
 
 .recipe-user a {
-  font-size: 1.3rem;
+  font-size: 1.2rem;
   color: #10d48e;
-  text-decoration: underline;
   font-weight: 600;
-  text-decoration: underline;
 }
 
 .recipe-user a:hover {

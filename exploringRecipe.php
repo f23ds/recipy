@@ -15,7 +15,7 @@ if (!isset($_GET['exploring_recipe_id'])) {
     exit;
 }
 
-$_SESSION['exploring_recipe_id']=$_GET['exploring_recipe_id'];
+$_SESSION['exploring_recipe_id'] = $_GET['exploring_recipe_id'];
 
 echo json_encode(true);
 
