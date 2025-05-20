@@ -80,9 +80,10 @@
   <?php include 'components/footer.php'; ?>
   <script src="https://unpkg.com/vue@3"></script>
   <script>
-    let app = Vue.createApp({
+    const app = Vue.createApp({
       data() {
         return {
+          showLogoutModal: false,
           profilePic: '<?php echo $profile_pic; ?>',
           preview: null,
           readonly: true,
@@ -97,6 +98,8 @@
         };
       },
       methods: {
+        showModal() { this.showLogoutModal = true },
+        hideModal() { this.showLogoutModal = false }, 
         enableEdit() {
           this.readonly = false;
         },
@@ -154,7 +157,6 @@
         }
       }
     });
-
     app.mount('#app');
 
   </script>
