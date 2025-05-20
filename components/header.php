@@ -10,7 +10,7 @@ session_start();
             <?php if (isset($_SESSION['username'])): ?>
                 <li><a href="dashboard.php">Dashboard</a></li>
                 <li><a href="explore.php">Explore</a></li>
-                <li><a href="edit-profile.php">Profile</a></li>
+                <li><a href="edit-profile-vue.php">Profile</a></li>
             <?php endif; ?>
             <li><a href="contact.php">Contact</a></li>
             <?php if (isset($_SESSION['username'])): ?>

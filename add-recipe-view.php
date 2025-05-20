@@ -11,6 +11,7 @@
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
     />
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
   </head>
   <body>
     <?php include 'components/header.php'; ?>
@@ -69,6 +70,6 @@
         </div>
       </form>
     </main>
-    <script src="./add-recipe.js" type="application/javascript"></script>
+    <script src="./add-recipe-jquery.js" type="application/javascript"></script>
   </body>
 </html>

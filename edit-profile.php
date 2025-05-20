@@ -24,6 +24,7 @@
     <title>Edit Profile - Recipy</title>
     <link rel="stylesheet" href="css/styles.css" />
     <link rel="stylesheet" href="css/edit-profile.css" />
+    <link rel="stylesheet" href="css/auth.css" /> 
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"

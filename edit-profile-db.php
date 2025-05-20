@@ -67,6 +67,7 @@ if ($dbconn) {
         $data = pg_query_params($dbconn, $q2, $params);
 
         if ($data) {
+            $_SESSION['username']=$new_username;
             echo json_encode([
                 "success" => true,
                 "username" => $new_username,
