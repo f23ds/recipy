@@ -57,14 +57,17 @@
         ></textarea>
         <p class="error" id="error-ingredients"></p>
 
-        <label for="instructions">Instructions</label>
-        <textarea
-          id="instructions"
-          name="instructions"
-          rows="6"
-          placeholder="Write step-by-step how to prepare the recipe..."
-        ></textarea>
+        <div class="steps-group">
+          <label>Instructions</label>
+          <div id="steps-container">
+            <div class="step-field">
+              <input type="text" name="instructions[]" placeholder="Step 1..." />
+            </div>
+          </div>
+          <button type="button" id="add-step-btn" class="btn-secondary">+ Add Step</button>
+        </div>
         <p class="error" id="error-instructions"></p>
+
 
         <div class="accessing-error" id=adding-error></div>
 

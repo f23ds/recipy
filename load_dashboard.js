@@ -288,28 +288,19 @@ function renderRecipes(recipes) {
 }
 
 document.addEventListener("DOMContentLoaded", () => {
-  const searchInput = document.getElementById("search-input");
-  const searchIcon = document.getElementById("search-icon"); // nuevo
+    const searchBtn = document.getElementById("search-btn");
+    const searchInput = document.getElementById("search-input");
 
-  function performSearch() {
-    const title = searchInput.value.trim();
-    if (title !== "") {
-      fetch(`search-recipe.php?title=${encodeURIComponent(title)}`)
-        .then((res) => res.json())
-        .then((data) => {
-          renderRecipes(data);
-        })
-        .catch((err) => {
-          console.error("Error fetching recipes:", err);
-        });
-    }
-  }
-
-  searchIcon.addEventListener("click", performSearch);
-
-  searchInput.addEventListener("keypress", (e) => {
-    if (e.key === "Enter") {
-      performSearch();
-    }
-  });
+    searchBtn.addEventListener("click", () => {
+        if (searchInput.value != "") {
+            fetch(`search-recipe.php?title=` + searchInput.value)
+                .then(res => res.json())
+                .then(data => {
+                    renderRecipes(data);
+                })
+                .catch(err => {
+                    console.error('Error fetching recipes:', err);
+                });
+        }
+    });
 });

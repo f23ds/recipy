@@ -14,8 +14,8 @@ function addRecipe() {
 
         const title = document.myForm.title.value.trim();
         const diners = document.myForm.diners.value.trim();
+        const description = document.myForm.description.value.trim();
         const ingredients = document.myForm.ingredients.value.trim();
-        const instructions = document.myForm.instructions.value.trim();
 
         const image = document.getElementById("image");
 
@@ -49,9 +49,12 @@ function addRecipe() {
             document.getElementById("error-ingredients").textContent = ""
         }
 
-        if (!instructions) {
-            document.getElementById("error-instructions").textContent = "❌ Please enter the instructions.";
-            no_adding = false;
+        const steps = Array.from(document.querySelectorAll('input[name="instructions[]"]'))
+                     .map(input => input.value.trim());
+
+        if (steps.length === 0 || steps.some(step => step === "")) {
+          document.getElementById('error-instructions').textContent = "❌ All steps must be filled.";
+          no_adding = false;
         } else {
             document.getElementById("error-instructions").textContent = ""
         }
@@ -86,3 +89,50 @@ function addRecipe() {
 }
 
 document.addEventListener('DOMContentLoaded', addRecipe);
+
+document.addEventListener("DOMContentLoaded", () => {
+    const stepsContainer = document.getElementById("steps-container");
+    const addStepBtn = document.getElementById("add-step-btn");
+
+    let stepCount = 1;
+
+    function updateRemoveButtons() {
+        const allSteps = stepsContainer.querySelectorAll('.step-field');
+        allSteps.forEach((step, index) => {
+            const removeBtn = step.querySelector('.remove-step-btn');
+            if (removeBtn) {
+                removeBtn.remove(); // elimina todos los botones
+            }
+            // solo el último paso puede tener el botón de eliminar
+            if (index === allSteps.length - 1 && allSteps.length > 1) {
+                const btn = document.createElement('button');
+                btn.type = 'button';
+                btn.classList.add('remove-step-btn');
+                btn.textContent = 'Remove';
+
+                btn.addEventListener('click', () => {
+                    step.remove();
+                    stepCount--;
+                    updateRemoveButtons(); // vuelve a dejar solo uno con botón
+                });
+
+                step.appendChild(btn);
+            }
+        });
+    }
+
+    addStepBtn.addEventListener("click", () => {
+        stepCount++;
+
+        const newStep = document.createElement("div");
+        newStep.classList.add("step-field");
+
+        newStep.innerHTML = `
+        <input type="text" name="instructions[]" placeholder="Step ${stepCount}..." />
+      `;
+
+        stepsContainer.appendChild(newStep);
+        updateRemoveButtons();
+    });
+});
+

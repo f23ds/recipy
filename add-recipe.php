@@ -17,7 +17,9 @@ if (!$username) {
 $title = $_POST['title'];
 $diners = $_POST['diners'];
 $description = $_POST['description'];
-$instructions = $_POST['instructions'] ?? '';
+$instructions = $_POST['instructions'] ?? [];
+$instructions = array_map('trim', $instructions); 
+$instructions = array_filter($instructions);
 $ingredients_raw = $_POST['ingredients'] ?? '';
 $ingredients_array = array_map('trim', explode(',', $ingredients_raw));
 $ingredients_array = array_filter($ingredients_array);
@@ -49,9 +51,11 @@ if (!$conn) {
     exit;
 }
 
+$instructions_pg = '{' . implode(',', array_map(fn($s) => '"' . addslashes($s) . '"', $instructions)) . '}';
+
 $query = "INSERT INTO recipes (title, diners, ingredients, instructions, author, image, descr)
           VALUES ($1, $2, $3, $4, $5, $6, $7)";
-$params = [$title, $diners, $ingredients_pg, $instructions, $username, $destPath, $description];
+$params = [$title, $diners, $ingredients_pg, $instructions_pg, $username, $destPath, $description];
 
 $result = pg_query_params($conn, $query, $params);
 

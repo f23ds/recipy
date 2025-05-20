@@ -20,7 +20,11 @@
   $diners=$tuple['diners'];
   $ingredientes_raw = $tuple['ingredients'];
   $ingredientes = explode(',', trim($ingredientes_raw, '{}'));
-  $instructions=$tuple['instructions'];
+  $ingredientes = array_map(fn($item) => trim($item, ' "'), $ingredientes);
+  $instructions_raw = trim($tuple['instructions'], '{}');
+  $instructions=str_getcsv($instructions_raw, ',', '"');
+  $instructions = array_filter($instructions, fn($s) => trim($s) !== '');
+  $instructions = array_values($instructions);
   $author=$tuple['author'];
   $descr=$tuple['descr'];
 
@@ -99,7 +103,9 @@
         <h2>Steps</h2>
         <ol class="steps">
           <?php
-            echo "<li>$instructions</li>";
+            foreach ($instructions as $step) {
+              echo "<li>" . htmlspecialchars($step) . "</li>";
+            }
           ?>
         </ol>
       </section>
