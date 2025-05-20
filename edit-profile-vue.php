@@ -70,7 +70,7 @@
         <p class="error" v-if="errors.error">{{ errors.error }}</p>
 
         <div class="form-actions">
-          <button type="button" class="btn-secondary" @click="enableEdit">Edit All</button>
+          <button type="button" class="btn-secondary" @click="enableEdit" v-if="readonly">Edit All</button>
           <button type="submit" class="btn-primary" v-if="!readonly">Save Changes</button>
           <a href="dashboard.php" class="btn-cancel">Cancel</a>
         </div>
