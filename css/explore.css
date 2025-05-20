@@ -53,7 +53,7 @@
 }
 
 .explore-section {
-  max-width: 1200px;
+  max-width: 1480px;
   margin: 2rem auto;
   padding: 0 1rem;
 }
@@ -106,8 +106,8 @@
 
 /* Tarjetas */
 .recipe-card {
-  flex: 0 0 260px;
-  height: 260px;
+  flex: 0 0 460px;
+  height: 400px;
   background: white;
   border-radius: 16px;
   overflow: hidden;
@@ -137,7 +137,7 @@
 }
 
 .recipe-title {
-  font-size: 1.1rem;
+  font-size: 1.6rem;
   color: #0caa71;
   margin: 0;
   color: inherit;
@@ -149,8 +149,13 @@
   text-decoration: none;
 }
 
+.recipe-user .diners-count {
+  font-size: 1.3rem; /* o lo que quieras */
+  color: #555;
+}
+
 .recipe-user a {
-  font-size: 0.9rem;
+  font-size: 1.3rem;
   color: #10d48e;
   text-decoration: underline;
   font-weight: 600;
@@ -164,11 +169,11 @@
 
 .like-btn {
   position: absolute;
-  top: 0.5rem;
-  right: 0.5rem;
+  top: 0.8rem;
+  right: 0.8rem;
   background: none;
   border: none;
-  font-size: 1.2rem;
+  font-size: 2rem;
   color: #ccc;
   cursor: pointer;
   transition: color 0.3s ease;

@@ -60,6 +60,7 @@
           <h1><?php echo $name; ?>’s Kitchen</h1>
         </div>
       </div>
+    </div>
 
     <section class="explore-section">
       <?php

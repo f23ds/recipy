@@ -11,7 +11,7 @@
         echo '<img src="' . htmlspecialchars($row['image']) . '" alt="Recipe" />';
         echo '<div class="recipe-info">';
         echo '<a class="recipe-title" href="recipe.php?recipe_id=' . $row['id'] . '">' . htmlspecialchars($row['title']) . '</a>';
-        echo '<span class="recipe-user"><a href="userKitchen.php?user='.$row['author'].'">@' . htmlspecialchars($row['author']) . '</a> • '.$row['diners'].' diners</span>';
+        echo '<span class="recipe-user"><a href="userKitchen.php?user='.$row['author'].'">@' . htmlspecialchars($row['author']) . '</a><span class="diners-count"> • '.$row['diners'].' diners</span></span>';
         $query = "SELECT * FROM saved_recipes WHERE username = $1 AND recipe_id = $2;";
         $result1 = pg_query_params($dbconn, $query, [$username, $row['id']]);
         if ($result1 && pg_num_rows($result1) > 0) {
