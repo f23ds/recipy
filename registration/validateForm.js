@@ -48,16 +48,13 @@ function validateForm() {
     if (!confirm_pw) {
       document.getElementById("error-confirm_pw").textContent = "❌ Please confirm your password.";
       no_registration = false;
-    } else {
-      document.getElementById("error-confirm_pw").textContent = ""
-    }
-
-    if (password && confirm_pw && password !== confirm_pw) {
+    } else if (password !== confirm_pw) {
       document.getElementById("error-confirm_pw").textContent = "❌ Both passwords must be the same.";
       no_registration = false;
     } else {
-      document.getElementById("error-confirm_pw").textContent = ""
+      document.getElementById("error-confirm_pw").textContent = "";
     }
+
 
     if (!no_registration) return;
 

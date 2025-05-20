@@ -1,7 +1,10 @@
-<div class="recipe-dashboard-card">
-  <img src="<?php echo htmlspecialchars($image); ?>" alt="<?php echo htmlspecialchars($title); ?>">
-  <div class="card-info">
-    <a href="recipe.php?recipe_id=<?php echo $id; ?>" class="card-title"><?php echo htmlspecialchars($title); ?></a>
-    <span class="card-sub">@<?php echo htmlspecialchars($author); ?><?php if (isset($servings)) echo " • $servings servings"; ?></span>
-  </div>
-</div>
+<?php
+echo '<div class="recipe-dashboard-card" id="receta-' . $recipe['id'] . '">
+        <img src="' . htmlspecialchars($recipe['image']) . '" alt="' . htmlspecialchars($recipe['title']) . '">
+        <div class="card-info">
+          <a href="recipe.php?recipe_id=' . $recipe['id'] . '" class="card-title">' . htmlspecialchars($recipe['title']) . '</a>
+          <span class="card-sub">@' . htmlspecialchars($recipe['author']) . ' • ' . $recipe['diners'] . ' diners</span>
+        </div>
+      </div>';
+?>
+

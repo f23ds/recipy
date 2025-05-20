@@ -1,17 +1,17 @@
 <?php
   session_start();
-  $active_user = $_SESSION['username'] ?? null;
+  $username = $_SESSION['username'] ?? null;
 
-  $username="";
+  $active_user="";
 
   if (isset($_GET['user'])) {
-    $username = $_GET['user'];
+    $active_user = $_GET['user'];
   }
   $dbconn = pg_connect("host=localhost port=5432 dbname=tsw user=postgres password=123456")
           or die('Could not connect: ' . pg_last_error());
 
   $q0 = "SELECT * FROM users WHERE username = $1";
-  $result = pg_query_params($dbconn, $q0, array($username));
+  $result = pg_query_params($dbconn, $q0, array($active_user));
 
   if (!($tuple = pg_fetch_array($result, null, PGSQL_ASSOC))) {
       echo "<h1>Query error</h1>";
@@ -21,7 +21,7 @@
   $profile_pic=$tuple['profile_pic'];
 
   $q0 = "SELECT * FROM recipes WHERE author = $1";
-  $result = pg_query_params($dbconn, $q0, array($username));
+  $result = pg_query_params($dbconn, $q0, array($active_user));
 
   if (!($tuple = pg_fetch_array($result, null, PGSQL_ASSOC))) {
       echo "<h1>Query error</h1>";
@@ -81,38 +81,9 @@
       </div>
 
     <section class="explore-section">
-      <div class="carousel-wrapper">
-        <button class="carousel-btn left"><i class="fas fa-chevron-left"></i></button>
-
-        <div class="carousel-track" id="carousel-track">
-          <!-- Puedes reemplazar esto por includes de PHP -->
-          <?php
-            if (pg_num_rows($result) > 0) {
-              while ($row = pg_fetch_assoc($result)) {
-                echo '<div class="recipe-card">';
-                echo '<img src='.$row['image'].' alt="Recipe" />';
-                echo '<div class="recipe-info">';
-                echo '<a class="recipe-title" href="recipe.php?recipe_id=' . $row['id'] . '">'. htmlspecialchars($row['title']) .'</a>';
-                echo '<span class="recipe-user"><a href="#">@'. $row['author'] .'</a></span>';
-                $query = "SELECT * FROM saved_recipes WHERE username = $1 AND recipe_id = $2;";
-                $result1 = pg_query_params($dbconn, $query, [$active_user, $row['id']]);
-
-                if ($result1 && pg_num_rows($result1) > 0) {
-                  echo '<button class="like-btn liked" onclick=saveRecipe('.$row['id'].')><i class="fa-solid fa-heart"></i></button>';
-                } else {
-                  echo '<button class="like-btn" onclick=saveRecipe('.$row['id'].')><i class="fa-regular fa-heart"></i></button>';
-                }
-                echo '</div>';
-                echo '</div>';
-              }
-            } else {
-              echo "<p class=no-recipes>There are no recipes to explore.</p>";
-            }
-          ?>
-      </div>
-
-      <button class="carousel-btn right"><i class="fas fa-chevron-right"></i></button>
-    </div>
-  </section>
+      <?php
+        include 'components/carousel-section.php';
+      ?>
+    </section>
   </body>
 </html>

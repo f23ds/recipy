@@ -81,30 +81,6 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 });
 
-// document.addEventListener("DOMContentLoaded", () => {
-
-//     const logoutLink = document.querySelector('.nav-links a[href="#logout"]');
-//     const modal = document.getElementById('logout-modal');
-//     const cancelBtn = document.getElementById('cancel-logout');
-
-//     if (logoutLink && modal && cancelBtn) {
-//         logoutLink.addEventListener('click', (e) => {
-//             e.preventDefault();
-//             modal.classList.add('active');
-//         });
-
-//         cancelBtn.addEventListener('click', () => {
-//             modal.classList.remove('active');
-//         });
-
-//         window.addEventListener('click', (e) => {
-//             if (e.target === modal) {
-//                 modal.classList.remove('active');
-//             }
-//         });
-//     }
-// });
-
 function saveRecipe(id) {
     fetch("exploringRecipe.php?exploring_recipe_id=" + id).then(res => res.json())
         .then(success => {

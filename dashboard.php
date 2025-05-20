@@ -54,14 +54,13 @@
         <div class="tab-content" id="content1">
           <div class="recipes-grid" id='resultado'>
           <?php
-            $query = "SELECT id, title, diners, ingredients, instructions FROM recipes WHERE author = $1";
+            $query = "SELECT * FROM recipes WHERE author = $1";
             $result = pg_query_params($dbconn, $query, [$username]);
 
             if (pg_num_rows($result) > 0) {
               while ($row = pg_fetch_assoc($result)) {
-                echo '<div class="recipe-dashboard-card" id="receta-' . $row['id'] . '">';
-                echo '<a href="recipe.php?recipe_id=' . $row['id'] . '">' . htmlspecialchars($row['title']) . '</a>';
-                echo '</div>';
+                $recipe = $row; 
+                include 'components/recipe-card.php';
               }
             } else {
               echo "<p class=no-recipes>You haven't added any recipes yet.</p>";
@@ -79,9 +78,8 @@
 
               if (pg_num_rows($result) > 0) {
                 while ($row = pg_fetch_assoc($result)) {
-                  echo '<div class="recipe-dashboard-card" id="receta-' . $row['id'] . '">';
-                  echo '<a href="recipe.php?recipe_id=' . $row['id'] . '">' . htmlspecialchars($row['title']) . '</a>';
-                  echo '</div>';
+                  $recipe = $row; 
+                  include 'components/recipe-card.php';
                 }
               } else {
                 echo "<p class=no-recipes>You haven't saved any recipes yet.</p>";
