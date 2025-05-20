@@ -87,6 +87,7 @@
       </form>
     </main>
 
+    <?php include 'components/footer.php'; ?>
     <script src="edit_profile.js"></script>
   </body>
 </html>

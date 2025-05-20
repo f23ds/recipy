@@ -77,7 +77,7 @@
       </form>
     </div>
   </main>
-
+  <?php include 'components/footer.php'; ?>
   <script src="https://unpkg.com/vue@3"></script>
   <script>
     let app = Vue.createApp({

@@ -70,6 +70,7 @@
         </div>
       </form>
     </main>
+    <?php include 'components/footer.php'; ?>
     <script src="./add-recipe-jquery.js" type="application/javascript"></script>
   </body>
 </html>

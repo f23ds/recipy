@@ -40,4 +40,6 @@ if (!($tuple = pg_fetch_array($result, null, PGSQL_ASSOC))) {
   </section>
 </body>
 
+<?php include 'components/footer.php'; ?>
+
 </html>

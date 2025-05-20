@@ -1,9 +1,10 @@
 <?php
-session_start();
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
 ?>
-
 <nav class="navbar">
-    <a href="index.php" class="logo">recipy</a>
+    <div class="logo">recipy</div>
 
     <div class="navbar-right">
         <ul class="nav-links">
@@ -14,7 +15,7 @@ session_start();
             <?php endif; ?>
             <li><a href="contact.php">Contact</a></li>
             <?php if (isset($_SESSION['username'])): ?>
-            <li><a href="#" id="logoutLink">Logout</a></li>
+                <li><a href="#" id="logoutLink">Logout</a></li>
             <?php endif; ?>
         </ul>
 

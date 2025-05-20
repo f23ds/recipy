@@ -62,5 +62,7 @@
         include 'components/carousel-section.php';
       ?>
     </section>
+
+    <?php include 'components/footer.php'; ?>
   </body>
 </html>

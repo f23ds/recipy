@@ -87,6 +87,8 @@ $profile_pic = $tuple['profile_pic']
       </div>
     </div>
   </div>
+
+  <?php include 'components/footer.php'; ?>
 </body>
 
 </html>

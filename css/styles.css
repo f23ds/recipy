@@ -201,3 +201,20 @@ body {
 .btn-login:hover {
   background-color: #0caa71;
 }
+
+.footer-wave {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: auto;
+  z-index: -1; 
+  pointer-events: none; 
+}
+
+.footer-wave svg {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
