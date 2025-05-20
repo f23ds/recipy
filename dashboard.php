@@ -41,7 +41,7 @@
           />
           <h1><?php echo $name; ?>’s Kitchen</h1>
         </div>
-        <a href="add-recipe.html" class="btn-primary add-recipe-btn">+ Add New Recipe</a>
+        <a href="add-recipe-view.php" class="btn-primary add-recipe-btn">+ Add New Recipe</a>
       </div>
 
       <div class="tabs">

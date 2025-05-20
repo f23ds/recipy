@@ -251,7 +251,7 @@ function renderRecipes(recipes) {
 
     const user = document.createElement("span");
     user.className = "recipe-user";
-    user.innerHTML = `<a href="#">@${recipe.author}</a>`;
+    user.innerHTML = `<a href="userKitchen.php?user=${recipe.author}">@${recipe.author}</a><span class="diners-count"> • ${recipe.diners} diners</span>`;
 
     const likeBtn = document.createElement("button");
     likeBtn.className = "like-btn" + (recipe.saved ? " liked" : "");
