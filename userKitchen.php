@@ -35,7 +35,6 @@
     <title>Dashboard - Recipy</title>
     <link rel="stylesheet" href="css/styles.css" />
     <link rel="stylesheet" href="css/explore.css" />
-    <link rel="stylesheet" href="css/dashboard.css" />
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
@@ -49,13 +48,13 @@
   <body>
     <?php include 'components/header.php'; ?>
 
-    <div class="dashboard-container">
-      <div class="dashboard-header">
-        <div class="user-info">
+    <div class="user-kitchen-container">
+      <div class="user-kitchen-header">
+        <div class="user-kitchen-info">
           <img
             src=<?php echo $profile_pic; ?>
             alt="User Avatar"
-            class="user-avatar"
+            class="user-kitchen-avatar"
           />
           <h1><?php echo $name; ?>’s Kitchen</h1>
         </div>

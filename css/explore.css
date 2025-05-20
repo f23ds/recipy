@@ -54,7 +54,7 @@
 
 .explore-section {
   max-width: 1480px;
-  margin: 2rem auto;
+  margin: 0.2rem auto;
   padding: 0 1rem;
 }
 
@@ -185,4 +185,39 @@
 
 .like-btn.liked i {
   color: #10d48e;
+}
+
+/* Contenedor general */
+.user-kitchen-container {
+  max-width: 1480px;
+  margin: 5rem auto 0 auto; /* ← este 2rem es la distancia desde arriba */
+  padding: 2rem 1rem;
+}
+
+/* Header con título y botón */
+.user-kitchen-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.user-kitchen-info {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.user-kitchen-avatar {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid #10d48e;
+}
+
+.user-kitchen-header h1 {
+  font-size: 2rem;
+  margin: 0;
+  color: #222;
 }
