@@ -35,6 +35,13 @@ function addRecipe() {
             document.getElementById("error-diners").textContent = ""
         }
 
+        if (!description) {
+            document.getElementById("error-description").textContent = "❌ Please enter a brief description.";
+            no_adding = false;
+        } else {
+            document.getElementById("error-description").textContent = ""
+        }
+
         if (!ingredients) {
             document.getElementById("error-ingredients").textContent = "❌ Please enter the ingredients.";
             no_adding = false;
