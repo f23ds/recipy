@@ -32,11 +32,8 @@
   
   <!-- Search -->
   <div class="search-bar">
-    <div class="search-wrapper">
-      <input type="text" class="search-input" id="search-input" placeholder="Search recipes..." />
-      <i class="fas fa-search"></i>
-    </div>
-    <button id="search-btn">Search</button>
+    <input type="text" class="search-input" id="search-input" placeholder="Search recipes..." />
+    <i class="fas fa-search" id="search-btn"></i>
   </div>
 
   <!-- Carousel -->
