@@ -22,7 +22,7 @@
             Recipy is the app where food lovers share creativity, flavor, and
             tradition. Get inspired, save, and cook.
           </p>
-          <a href="#" class="cta-btn">Get started now</a>
+          <a href="registration/register.php" class="cta-btn">Get started now</a>
         </div>
         <div class="hero-illustration">
           <div class="blob">

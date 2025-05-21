@@ -35,7 +35,7 @@
       </form>
       <div class="extra-links">
         <p>Already have an account? <a href="../login/login_form.php">Log in</a></p>
-        <a href="../index.html" class="back-home">← Back to home</a>
+        <a href="../index.php" class="back-home">← Back to home</a>
       </div>
     </div>
   </div>
