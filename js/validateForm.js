@@ -58,7 +58,7 @@ function validateForm() {
 
     if (!no_registration) return;
 
-    fetch("registration.php", {
+    fetch("../registration/registration.php", {
       method: "POST",
       headers: { "Content-Type": "application/x-www-form-urlencoded" },
       body: new URLSearchParams({

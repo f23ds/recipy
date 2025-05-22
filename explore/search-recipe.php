@@ -51,6 +51,10 @@ while ($row = pg_fetch_assoc($result)) {
 
     $row['saved'] = ($checkSavedResult && pg_num_rows($checkSavedResult) > 0);
 
+    $likesQ = "SELECT COUNT(*) AS times_saved FROM saved_recipes WHERE recipe_id = $1;";
+    $likesRes = pg_query_params($conn, $likesQ, [$row['id']]);
+    $row['times_saved'] = pg_fetch_assoc($likesRes)['times_saved'];
+
     $recipes[] = $row;
 }
 

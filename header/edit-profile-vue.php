@@ -22,13 +22,13 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Edit Profile - Recipy</title>
-  <link rel="stylesheet" href="css/styles.css" />
-  <link rel="stylesheet" href="css/edit-profile.css" />
-  <link rel="stylesheet" href="css/auth.css" />  
+  <link rel="stylesheet" href="../css/styles.css" />
+  <link rel="stylesheet" href="../css/edit-profile.css" />
+  <link rel="stylesheet" href="../css/auth.css" />  
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
 </head>
 <body>
-  <?php include 'components/header.php'; ?>
+  <?php include '../components/header.php'; ?>
 
   <main class="edit-profile-container">
     <h1>Edit your profile</h1>
@@ -72,18 +72,17 @@
         <div class="form-actions">
           <button type="button" class="btn-secondary" @click="enableEdit" v-if="readonly">Edit All</button>
           <button type="submit" class="btn-primary" v-if="!readonly">Save Changes</button>
-          <a href="dashboard.php" class="btn-cancel">Cancel</a>
+          <a href="../dashboard/dashboard.php" class="btn-cancel">Cancel</a>
         </div>
       </form>
     </div>
   </main>
-  <?php include 'components/footer.php'; ?>
+  <?php include '../components/footer.php'; ?>
   <script src="https://unpkg.com/vue@3"></script>
   <script>
     const app = Vue.createApp({
       data() {
         return {
-          showLogoutModal: false,
           profilePic: '<?php echo $profile_pic; ?>',
           preview: null,
           readonly: true,
@@ -98,8 +97,6 @@
         };
       },
       methods: {
-        showModal() { this.showLogoutModal = true },
-        hideModal() { this.showLogoutModal = false }, 
         enableEdit() {
           this.readonly = false;
         },

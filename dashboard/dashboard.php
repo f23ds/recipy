@@ -21,14 +21,13 @@ $profile_pic = $tuple['profile_pic']
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Dashboard - Recipy</title>
-  <link rel="stylesheet" href="css/styles.css" />
-  <link rel="stylesheet" href="css/dashboard.css" />
+  <link rel="stylesheet" href="../css/styles.css" />
+  <link rel="stylesheet" href="../css/dashboard.css" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
-  <script src="load_dashboard.js"></script>
 </head>
 
 <body>
-  <?php include 'components/header.php'; ?>
+  <?php include '../components/header.php'; ?>
 
   <div class="dashboard-container">
     <div class="dashboard-header">
@@ -36,7 +35,7 @@ $profile_pic = $tuple['profile_pic']
         <img src=<?php echo $profile_pic; ?> alt="User Avatar" class="user-avatar" />
         <h1><?php echo $name; ?>’s Kitchen</h1>
       </div>
-      <a href="add-recipe-view.php" class="btn-primary add-recipe-btn">+ Add New Recipe</a>
+      <a href="../dashboard/add-recipe-view.php" class="btn-primary add-recipe-btn">+ Add New Recipe</a>
     </div>
 
     <div class="tabs">
@@ -49,13 +48,13 @@ $profile_pic = $tuple['profile_pic']
       <div class="tab-content" id="content1">
         <div class="recipes-grid" id='resultado'>
           <?php
-          $query = "SELECT * FROM recipes WHERE author = $1";
+          $query = "SELECT  r.*,  (   SELECT COUNT(*)    FROM saved_recipes s    WHERE s.recipe_id = r.id ) AS times_saved FROM recipes r WHERE r.author = $1; ";
           $result = pg_query_params($dbconn, $query, [$username]);
 
           if (pg_num_rows($result) > 0) {
             while ($row = pg_fetch_assoc($result)) {
               $recipe = $row;
-              include 'components/recipe-card.php';
+              include '../components/recipe-card.php';
             }
           } else {
             echo "<p class=no-recipes>You haven't added any recipes yet.</p>";
@@ -67,14 +66,21 @@ $profile_pic = $tuple['profile_pic']
       <div class="tab-content" id="content2">
         <div class="recipes-grid" id='resultado2'>
           <?php
-          $query = "SELECT r.* FROM recipes r JOIN saved_recipes s ON r.id = s.recipe_id WHERE s.username = $1;";
+          $query = "SELECT 
+                        r.*, 
+                        (SELECT COUNT(*) FROM saved_recipes sr WHERE sr.recipe_id = r.id) AS times_saved
+                      FROM recipes r
+                      JOIN saved_recipes s ON r.id = s.recipe_id
+                      WHERE s.username = $1;
+                   ";
+
           $result = pg_query_params($dbconn, $query, [$username]);
 
 
           if (pg_num_rows($result) > 0) {
             while ($row = pg_fetch_assoc($result)) {
               $recipe = $row;
-              include 'components/recipe-card.php';
+              include '../components/recipe-card.php';
             }
           } else {
             echo "<p class=no-recipes>You haven't saved any recipes yet.</p>";
@@ -82,13 +88,13 @@ $profile_pic = $tuple['profile_pic']
           ?>
         </div>
         <div class="explore-more">
-          <a href="explore.php" class="btn-secondary">Explore More Recipes</a>
+          <a href="../explore/explore.php" class="btn-secondary">Explore More Recipes</a>
         </div>
       </div>
     </div>
   </div>
 
-  <?php include 'components/footer.php'; ?>
+  <?php include '../components/footer.php'; ?>
 </body>
 
 </html>

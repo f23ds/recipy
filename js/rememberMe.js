@@ -30,7 +30,7 @@ function checkLogin() {
 
         if (!no_login) return;
 
-        fetch("login.php", {
+        fetch("../login/login.php", {
             method: "POST",
             headers: { "Content-Type": "application/x-www-form-urlencoded" },
             body: new URLSearchParams({

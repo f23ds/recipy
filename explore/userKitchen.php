@@ -20,7 +20,16 @@
   $name=$tuple['name'];
   $profile_pic=$tuple['profile_pic'];
 
-  $q0 = "SELECT * FROM recipes WHERE author = $1";
+  $q0 = "SELECT 
+      r.*, 
+      COUNT(s_all.recipe_id) AS times_saved,
+      COUNT(s_user.recipe_id) > 0 AS is_saved
+    FROM recipes r
+    LEFT JOIN saved_recipes s_all ON r.id = s_all.recipe_id
+    LEFT JOIN saved_recipes s_user ON r.id = s_user.recipe_id AND s_user.username = $1
+    WHERE r.author = $1
+    GROUP BY r.id;
+  ";
   $result = pg_query_params($dbconn, $q0, array($active_user));
 
   if (!($tuple = pg_fetch_array($result, null, PGSQL_ASSOC))) {
@@ -33,16 +42,17 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>UserKitchen - Recipy</title>
-    <link rel="stylesheet" href="css/styles.css" />
-    <link rel="stylesheet" href="css/explore.css" />
+    <link rel="stylesheet" href="../css/styles.css" />
+    <link rel="stylesheet" href="../css/explore.css" />
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
     />
-    <script src="load_dashboard.js"></script>
+    <script src="../js/explore.js"></script>
+    <script src="https://unpkg.com/vue@3"></script>
   </head>
   <body>
-    <?php include 'components/header.php'; ?>
+    <?php include '../components/header.php'; ?>
 
     <div class="user-kitchen-container">
       <div class="user-kitchen-header">
@@ -59,10 +69,10 @@
 
     <section class="explore-section">
       <?php
-        include 'components/carousel-section.php';
+        include '../components/carousel-section.php';
       ?>
     </section>
 
-    <?php include 'components/footer.php'; ?>
+    <?php include '../components/footer.php'; ?>
   </body>
 </html>

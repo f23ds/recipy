@@ -26,7 +26,7 @@ $query = "DELETE FROM recipes WHERE id = $1;";
 $result = pg_query_params($conn, $query, [$recipe_id]);
 
 if ($result && pg_affected_rows($result) === 1) {
-    header("Location: dashboard.php");
+    header("Location: ../dashboard/dashboard.php");
 } else {
     echo "Error: Could not delete recipe.";
 }

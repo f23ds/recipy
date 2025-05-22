@@ -4,9 +4,9 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Add New Recipe - Recipy</title>
-    <link rel="stylesheet" href="css/styles.css" />
-    <link rel="stylesheet" href="css/add-recipe.css" />
-     <link rel="stylesheet" href="css/auth.css" />
+    <link rel="stylesheet" href="../css/styles.css" />
+    <link rel="stylesheet" href="../css/add-recipe.css" />
+     <link rel="stylesheet" href="../css/auth.css" />
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
@@ -14,7 +14,7 @@
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
   </head>
   <body>
-    <?php include 'components/header.php'; ?>
+    <?php include '../components/header.php'; ?>
 
     <main class="add-recipe-container">
       <h1>Add a New Recipe</h1>
@@ -66,11 +66,11 @@
 
         <div class="form-actions">
           <button type="submit" class="btn-primary">Submit Recipe</button>
-          <a href="dashboard.php" class="btn-cancel">Cancel</a>
+          <a href="../dashboard/dashboard.php" class="btn-cancel">Cancel</a>
         </div>
       </form>
     </main>
-    <?php include 'components/footer.php'; ?>
-    <script src="./add-recipe-jquery.js" type="application/javascript"></script>
+    <?php include '../components/footer.php'; ?>
+    <script src="../js/add-recipe-jquery.js" type="application/javascript"></script>
   </body>
 </html>

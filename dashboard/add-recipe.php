@@ -26,7 +26,7 @@ $ingredients_array = array_filter($ingredients_array);
 $ingredients_pg = '{' . implode(',', $ingredients_array) . '}';
 
 // Imagen
-$destPath = 'img/recipe.png'; // valor por defecto
+$destPath = '../img/recipe.png'; // valor por defecto
 
 if (isset($_FILES['image']) && $_FILES['image']['error'] === UPLOAD_ERR_OK) {
 
@@ -37,7 +37,7 @@ if (isset($_FILES['image']) && $_FILES['image']['error'] === UPLOAD_ERR_OK) {
     // Opcional: extensión segura
     $ext = pathinfo($fileName, PATHINFO_EXTENSION);
     // Ruta final
-    $uploadDir = 'img/recipes/';
+    $uploadDir = '../img/recipes/';
     $newFileName = uniqid('recipe_') . '.' . $ext;
     $destPath = $uploadDir . $newFileName;
     move_uploaded_file($fileTmpPath, $destPath);

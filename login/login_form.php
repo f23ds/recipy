@@ -6,7 +6,7 @@
     <title>Login - Recipy</title>
     <link rel="stylesheet" href="../css/styles.css" />
     <link rel="stylesheet" href="../css/auth.css" />
-    <script src="./rememberMe.js" type="application/javascript"></script>
+    <script src="../js/rememberMe.js" type="application/javascript"></script>
   </head>
   <body>
     <div class="background-shape shape1"></div>

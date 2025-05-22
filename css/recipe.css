@@ -162,3 +162,17 @@
   color: #710808;
 }
 
+.like-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5px;
+  margin-top: 0.5rem;
+}
+
+.likes-text {
+  font-size: 1.2rem;
+  color: #000000;
+}
+
+

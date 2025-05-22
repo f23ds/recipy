@@ -32,7 +32,7 @@ $_SESSION['username'] = $tuple['username'];
 
 echo json_encode([
     "success" => true,
-    "redirect" => "../dashboard.php"
+    "redirect" => "../dashboard/dashboard.php"
 ]);
 
 pg_close($dbconn);

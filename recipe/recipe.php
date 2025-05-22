@@ -28,6 +28,14 @@
   $author=$tuple['author'];
   $descr=$tuple['descr'];
 
+  $likesQ = "SELECT COUNT(*) AS times_saved FROM saved_recipes WHERE recipe_id = $1;";
+  $likesRes = pg_query_params($dbconn, $likesQ, [$id]);
+  $likes = pg_fetch_assoc($likesRes)['times_saved'];
+
+  $isSavedQ = "SELECT 1 FROM saved_recipes WHERE username = $1 AND recipe_id = $2;";
+  $isSavedRes = pg_query_params($dbconn, $isSavedQ, [$username, $id]);
+  $isSaved = ($isSavedRes && pg_num_rows($isSavedRes) > 0);
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -35,9 +43,9 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Recipe - Recipy</title>
-    <link rel="stylesheet" href="css/styles.css" />
-    <link rel="stylesheet" href="css/recipe.css" />
-    <link rel="stylesheet" href="css/dashboard.css" />
+    <link rel="stylesheet" href="../css/styles.css" />
+    <link rel="stylesheet" href="../css/recipe.css" />
+    <link rel="stylesheet" href="../css/dashboard.css" />
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
@@ -47,11 +55,12 @@
       href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&display=swap"
       rel="stylesheet"
     />
-    <script src="load_dashboard.js"></script>
+    <script src="../js/recipe.js"></script>
   </head>
   <body>
-    <?php include 'components/header.php'; ?>
+    <?php include '../components/header.php'; ?>
 
+  <div id=recipe-info>
     <main class="recipe-container">
       <div class="recipe-header">
         <img src=<?php echo $tuple['image']?> alt="Recipe Image" class="recipe-image" />
@@ -60,13 +69,19 @@
           <div>
             <h1 class="recipe-title"><?php echo "$title - $diners diners"; ?>
               <?php if ($username === $author): ?>
-                <i class="fa-solid fa-trash delete-icon" id="deleteBtn"></i>
+                <i class="fa-solid fa-trash delete-icon" @click.prevent="showModal" id="deleteBtn"></i>
               <?php endif; ?>
             </h1>
             <?php
-              echo "<p class=\"recipe-author\">
-                      by <a href=\"userKitchen.php?user=$author\" class=\"author-name-link\">@$author</a>
-                    </p>";
+              if ($username !== $author) {
+                echo "<p class=\"recipe-author\">
+                        by <a href=\"../explore/userKitchen.php?user=$author\" class=\"author-name-link\">@$author</a>
+                      </p>";
+              } else {
+                echo "<p class=\"recipe-author\">
+                        by <a href=\"../dashboard/dashboard.php\" class=\"author-name-link\">@$author</a>
+                      </p>";
+              }
             ?>
           </div>
 
@@ -76,9 +91,12 @@
 
             if (pg_num_rows($result1)==0) {
               echo '
-                    <button class="btn-like" aria-label="Save Recipe">
-                      <i class="fa-regular fa-heart"></i>
-                    </button>';
+                    <div class="like-container">
+                    <button class="btn-like" :class="{ liked: liked }" @click="toggleLike" aria-label="Save Recipe">
+                      <i :class="[liked ? \'fa-solid\' : \'fa-regular\', \'fa-heart\']"></i>
+                    </button>
+                    <p class="likes-text">{{ likes }} likes</p>
+                  </div>';
             }
           ?>
         </div>
@@ -116,36 +134,52 @@
       </section>
     </main>
 
-    <div class="modal-overlay" id="delete-modal">
+    <div class="modal-overlay" :class="{ active: showLogoutModal }" @click.self="hideModal" id="delete-modal">
       <div class="modal-content">
         <h3>Are you sure you want to delete this recipe?</h3>
         <div class="modal-buttons">
-          <button class="btn-cancel" id="cancel-delete">Cancel</button>
-          <a href="delete.php" class="btn-confirm">Yes, delete</a>
+          <button class="btn-cancel" @click="hideModal" id="cancel-delete">Cancel</button>
+          <a href="../recipe/delete.php" class="btn-confirm">Yes, delete</a>
         </div>
       </div>
     </div>
+  </div>
+    <script src="https://unpkg.com/vue@3"></script>
     <script>
-      const deleteBtn = document.getElementById('deleteBtn');
-      const modal = document.getElementById('delete-modal');
-      const cancelBtn = document.getElementById('cancel-delete');
-            
-      if (deleteBtn && modal && cancelBtn) {
-        deleteBtn.addEventListener('click', () => {
-          modal.classList.add('active');
-        });
-      
-        cancelBtn.addEventListener('click', () => {
-          modal.classList.remove('active');
-        });
-      
-        window.addEventListener('click', (e) => {
-          if (e.target === modal) {
-            modal.classList.remove('active');
-          }
-        });
-      }
+      document.addEventListener('DOMContentLoaded', () => {
+      Vue.createApp({
+        data() {
+            return {
+                showLogoutModal: false,
+                likes: <?php echo $likes ?>,
+                liked: <?php echo json_encode($isSaved) ?>
+            };
+        },
+        methods: {
+            showModal() {
+                this.showLogoutModal = true;
+            },
+            hideModal() {
+                this.showLogoutModal = false;
+            },
+            toggleLike() {
+              this.liked = !this.liked;
+              this.likes += this.liked ? 1 : -1;
+              const code = this.liked ? 1 : 0;
+              fetch(`../recipe/saveRecipe.php?code=${code}`)
+                .then((res) => res.json())
+                .then((success) => {
+                  if (success) {
+                    console.log("Acción completada");
+                  } else {
+                    console.error("Error en la consulta");
+                  }
+                });
+            }
+        }
+      }).mount('#recipe-info');
+      });
     </script>
-    <?php include 'components/footer.php'; ?>
+    <?php include '../components/footer.php'; ?>
   </body>
 </html>

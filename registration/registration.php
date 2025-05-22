@@ -40,7 +40,7 @@ if ($dbconn) {
             $_SESSION['username']=$username;
             echo json_encode([
                 "success" => true,
-                "redirect" => "../dashboard.php"
+                "redirect" => "../dashboard/dashboard.php"
             ]);
         } else {
             echo json_encode(["error" => "❌ Something went wrong. Please try again."]);

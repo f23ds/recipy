@@ -6,7 +6,7 @@
   <title>Register - Recipy</title>
   <link rel="stylesheet" href="../css/styles.css" />
   <link rel="stylesheet" href="../css/auth.css" />
-  <script src="validateForm.js"></script>
+  <script src="../js/validateForm.js"></script>
 </head>
 <body>
   <div class="background-shape shape1"></div>

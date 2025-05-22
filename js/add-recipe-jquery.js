@@ -52,7 +52,7 @@ $(document).ready(function () {
     const formData = new FormData(this);
 
     $.ajax({
-      url: "add-recipe.php",
+      url: "../dashboard/add-recipe.php",
       method: "POST",
       data: formData,
       processData: false,
@@ -60,7 +60,7 @@ $(document).ready(function () {
       dataType: 'json',
       success: function (data) {
         if (data.success) {
-          window.location.href = "dashboard.php";
+          window.location.href = "../dashboard/dashboard.php";
         } else {
           $errorDiv.text(data.error).show();
         }

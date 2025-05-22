@@ -21,7 +21,11 @@ if ($dbconn) {
 
     $username = $_SESSION['username'] ?? null;
 
-    $destPath="img/user.png";
+    $q0 = "SELECT * FROM users WHERE username = $1";
+    $result = pg_query_params($dbconn, $q0, array($username));
+    $tuple = pg_fetch_array($result, null, PGSQL_ASSOC);
+
+    $destPath=$tuple['profile_pic'];
 
     if (isset($_FILES['profileImage']) && $_FILES['profileImage']['error'] === UPLOAD_ERR_OK) {
         $fileTmpPath = $_FILES['profileImage']['tmp_name'];
@@ -33,7 +37,7 @@ if ($dbconn) {
         $ext = pathinfo($fileName, PATHINFO_EXTENSION);
 
         // Ruta final
-        $uploadDir = 'img/profiles/';
+        $uploadDir = '../img/profiles/';
         $newFileName = $_POST['username'] . '.' . $ext;
         $destPath = $uploadDir . $newFileName;
 
