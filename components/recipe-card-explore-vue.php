@@ -1,7 +1,7 @@
 <?php
   $likes = $recipe['times_saved'];
 
-  $isSaved = $recipe['is_saved'];
+  $isSaved = $recipe['is_saved'] == 't';
 ?>
 
 <div id="recipe-<?php echo $recipe['id'] ?>" class="recipe-card">

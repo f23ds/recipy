@@ -16,9 +16,10 @@ $q0 = "SELECT
 ";
 $result = pg_query_params($dbconn, $q0, array($username));
 
-if (!($tuple = pg_fetch_array($result, null, PGSQL_ASSOC))) {
-  echo "<h1>Query error</h1>";
+if (pg_num_rows($result) === 0) {
+    echo "<h1>No recipes found</h1>";
 }
+
 
 ?>
 <!DOCTYPE html>
