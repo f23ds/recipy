@@ -1,7 +1,6 @@
 <?php
 session_start();
 
-// Verificamos si el usuario está logueado
 if (!isset($_SESSION['username'])) {
     http_response_code(403);
     echo json_encode(['error' => 'Access denied. Please log in.']);
@@ -10,7 +9,6 @@ if (!isset($_SESSION['username'])) {
 
 $username = $_SESSION['username'];
 
-// Verificamos si se ha proporcionado el parámetro 'title'
 if (!isset($_GET['title']) || empty(trim($_GET['title']))) {
     http_response_code(400);
     echo json_encode(['error' => 'Missing or empty title parameter.']);
@@ -19,7 +17,6 @@ if (!isset($_GET['title']) || empty(trim($_GET['title']))) {
 
 $title = trim($_GET['title']);
 
-// Conectamos a la base de datos
 $conn = pg_connect("host=localhost port=5432 dbname=tsw user=postgres password=123456");
 
 if (!$conn) {
@@ -28,7 +25,6 @@ if (!$conn) {
     exit;
 }
 
-// Preparamos y ejecutamos la consulta
 $q1 = "SELECT * FROM recipes WHERE author != $1 AND title ILIKE '%' || $2 || '%'";
 $result = pg_query_params($conn, $q1, array($username, $title));
 
@@ -39,13 +35,11 @@ if (!$result) {
     exit;
 }
 
-// Procesamos resultados
 $recipes = [];
 
 while ($row = pg_fetch_assoc($result)) {
     $row['ingredients'] = explode(',', trim($row['ingredients'], '{}'));
 
-    // Verificamos si la receta está guardada por el usuario
     $checkSavedQuery = "SELECT 1 FROM saved_recipes WHERE username = $1 AND recipe_id = $2 LIMIT 1";
     $checkSavedResult = pg_query_params($conn, $checkSavedQuery, array($username, $row['id']));
 
@@ -58,7 +52,6 @@ while ($row = pg_fetch_assoc($result)) {
     $recipes[] = $row;
 }
 
-// Devolvemos la respuesta en formato JSON
 echo json_encode($recipes);
 
 pg_close($conn);

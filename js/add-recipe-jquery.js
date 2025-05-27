@@ -37,7 +37,11 @@ $(document).ready(function () {
 
     setError("title", title, "❌ Please enter the title of the recipe.");
     setError("diners", diners, "❌ Please enter the amount of diners.");
-    setError("description", description, "❌ Please enter a brief description.");
+    setError(
+      "description",
+      description,
+      "❌ Please enter a brief description."
+    );
     setError("ingredients", ingredients, "❌ Please enter the ingredients.");
     setError(
       "instructions",
@@ -48,7 +52,6 @@ $(document).ready(function () {
 
     if (!no_adding) return;
 
-    // Enviar con FormData
     const formData = new FormData(this);
 
     $.ajax({
@@ -57,7 +60,7 @@ $(document).ready(function () {
       data: formData,
       processData: false,
       contentType: false,
-      dataType: 'json',
+      dataType: "json",
       success: function (data) {
         if (data.success) {
           window.location.href = "../dashboard/dashboard.php";

@@ -1,7 +1,6 @@
 <?php
 session_start();
 
-// Verificamos si el usuario está logueado
 if (!isset($_SESSION['username']) || !isset($_SESSION['exploring_recipe_id'])) {
     http_response_code(403);
     echo "Access denied. Please log in.";
@@ -18,7 +17,6 @@ if (!isset($_GET['code'])) {
 
 $code=$_GET['code'];
 
-// Conectamos a PostgreSQL
 $conn = pg_connect("host=localhost port=5432 dbname=tsw user=postgres password=123456")
         or die('Could not connect: ' . pg_last_error());
 

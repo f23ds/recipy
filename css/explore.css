@@ -59,7 +59,6 @@
   margin-bottom: 1.5rem;
 }
 
-/* Carrusel */
 .carousel-wrapper {
   position: relative;
   overflow: visible;
@@ -99,7 +98,6 @@
   background-color: #0caa71;
 }
 
-/* Tarjetas */
 .recipe-card {
   flex: 0 0 340px;
   height: 300px;
@@ -178,14 +176,12 @@
   color: #10d48e;
 }
 
-/* Contenedor general */
 .user-kitchen-container {
   max-width: 1480px;
   margin: 1rem auto -2.5rem auto; 
   padding: 2rem 1rem;
 }
 
-/* Header con título y botón */
 .user-kitchen-header {
   display: flex;
   justify-content: space-between;

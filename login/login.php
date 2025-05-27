@@ -11,7 +11,6 @@ $dbconn = pg_connect("host=localhost port=5432 dbname=tsw user=postgres password
 $email = $_POST['email'] ?? '';
 $password_input = $_POST['password'] ?? '';
 
-// Verificamos si el email existe
 $q1 = "SELECT * FROM users WHERE email = $1";
 $result = pg_query_params($dbconn, $q1, [$email]);
 

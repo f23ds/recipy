@@ -1,4 +1,3 @@
-//Saber a qué receta se está dando like en explore
 function saveRecipe(id) {
   fetch("../explore/exploringRecipe.php?exploring_recipe_id=" + id)
     .then((res) => res.json())
@@ -11,7 +10,6 @@ function saveRecipe(id) {
     });
 }
 
-//Botones carrusel de explore
 window.addEventListener("DOMContentLoaded", () => {
   document.querySelectorAll(".carousel-wrapper").forEach((wrapper) => {
     const track = wrapper.querySelector(".carousel-track");
@@ -41,7 +39,6 @@ window.addEventListener("DOMContentLoaded", () => {
   });
 });
 
-//Explore en el momento de buscar
 function renderRecipes(recipes) {
   const container = document.querySelector(".carousel-track");
   container.innerHTML = "";
@@ -62,20 +59,29 @@ function renderRecipes(recipes) {
     card.innerHTML = `
       <img src="${recipe.image}" alt="Recipe" />
       <div class="recipe-info">
-        <a class="recipe-title" href="../recipe/recipe.php?recipe_id=${recipe.id}">${recipe.title}</a>
+        <a class="recipe-title" href="../recipe/recipe.php?recipe_id=${
+          recipe.id
+        }">${recipe.title}</a>
         <span class="recipe-user">
-          <a href="../explore/userKitchen.php?user=${recipe.author}">@${recipe.author}</a>
-          <span class="diners-count"> • ${recipe.diners} diners • <span class="likes-count">${recipe.times_saved}</span> likes</span>
+          <a href="../explore/userKitchen.php?user=${recipe.author}">@${
+      recipe.author
+    }</a>
+          <span class="diners-count"> • ${
+            recipe.diners
+          } diners • <span class="likes-count">${
+      recipe.times_saved
+    }</span> likes</span>
         </span>
-        <button class="like-btn${recipe.saved ? ' liked' : ''}" onclick="saveRecipe(${recipe.id})" data-id="${recipe.id}">
-          <i class="${recipe.saved ? 'fa-solid' : 'fa-regular'} fa-heart"></i>
+        <button class="like-btn${
+          recipe.saved ? " liked" : ""
+        }" onclick="saveRecipe(${recipe.id})" data-id="${recipe.id}">
+          <i class="${recipe.saved ? "fa-solid" : "fa-regular"} fa-heart"></i>
         </button>
       </div>
     `;
 
     container.appendChild(card);
 
-    // Like button logic
     const likeBtn = card.querySelector(".like-btn");
     const likesCount = card.querySelector(".likes-count");
 
@@ -118,27 +124,26 @@ function renderRecipes(recipes) {
   }
 }
 
-//Buscar receta en explore
 document.addEventListener("DOMContentLoaded", () => {
-    const searchBtn = document.getElementById("search-btn");
-    const searchInput = document.getElementById("search-input");
+  const searchBtn = document.getElementById("search-btn");
+  const searchInput = document.getElementById("search-input");
 
-    searchBtn.addEventListener("click", () => {
-        if (searchInput.value != "") {
-            fetch(`../explore/search-recipe.php?title=` + searchInput.value)
-                .then(res => res.json())
-                .then(data => {
-                    renderRecipes(data);
-                })
-                .catch(err => {
-                    console.error('Error fetching recipes:', err);
-                });
-        }
-    });
+  searchBtn.addEventListener("click", () => {
+    if (searchInput.value != "") {
+      fetch(`../explore/search-recipe.php?title=` + searchInput.value)
+        .then((res) => res.json())
+        .then((data) => {
+          renderRecipes(data);
+        })
+        .catch((err) => {
+          console.error("Error fetching recipes:", err);
+        });
+    }
+  });
 
-    searchInput.addEventListener("keyup", (e) => {
-      if (e.key === "Enter" && searchInput.value != "") {
-        searchBtn.click();
-      }
-    });
+  searchInput.addEventListener("keyup", (e) => {
+    if (e.key === "Enter" && searchInput.value != "") {
+      searchBtn.click();
+    }
+  });
 });

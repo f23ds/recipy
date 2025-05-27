@@ -34,7 +34,6 @@ if (isset($_FILES['image']) && $_FILES['image']['error'] === UPLOAD_ERR_OK) {
     $fileName = $_FILES['image']['name'];
     $fileSize = $_FILES['image']['size'];
     $fileType = $_FILES['image']['type'];
-    // Opcional: extensión segura
     $ext = pathinfo($fileName, PATHINFO_EXTENSION);
     // Ruta final
     $uploadDir = '../img/recipes/';

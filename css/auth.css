@@ -1,4 +1,3 @@
-/* Fondo decorativo */
 .background-shape {
   position: absolute;
   border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
@@ -22,7 +21,6 @@
   right: -120px;
 }
 
-/* Logo */
 .logo-login {
   display: block;
   text-align: center;
@@ -33,7 +31,6 @@
   z-index: 2;
 }
 
-/* Contenedor del registro (igual que login) */
 .login-container {
   position: absolute;
   top: 50%;
@@ -64,7 +61,6 @@
   color: #222;
 }
 
-/* Campos de entrada */
 .login-box input[type="email"],
 .login-box input[type="password"],
 .login-box input[type="text"] {
@@ -82,7 +78,6 @@
   border-color: #10d48e;
 }
 
-/* Botón */
 .login-box button {
   width: 100%;
   padding: 0.75rem;
@@ -113,10 +108,9 @@
 .remember-me input[type="checkbox"] {
   width: 16px;
   height: 16px;
-  accent-color: #10d48e; 
+  accent-color: #10d48e;
 }
 
-/* Enlaces */
 .extra-links {
   margin-top: 1.5rem;
   font-size: 0.9rem;
@@ -153,13 +147,19 @@
   margin-bottom: 16px;
   text-align: center;
   font-weight: 500;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
   animation: fadeIn 0.3s ease-in-out;
 }
 
 @keyframes fadeIn {
-  from { opacity: 0; transform: translateY(-5px); }
-  to { opacity: 1; transform: translateY(0); }
+  from {
+    opacity: 0;
+    transform: translateY(-5px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .error {
@@ -168,5 +168,3 @@
   margin-top: -8px;
   margin-bottom: 10px;
 }
-
-

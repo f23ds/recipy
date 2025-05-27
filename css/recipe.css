@@ -4,8 +4,6 @@
   padding: 2rem 1rem;
   position: relative;
   z-index: 2;
-  /* box-shadow: 0 0 60px rgba(16, 212, 142, 0.06); */
-  /* border-radius: 20px; */
 }
 
 .recipe-header {
@@ -70,7 +68,6 @@
   color: #10d48e;
 }
 
-/* Sección de contenido */
 .recipe-content h2 {
   margin-top: 2rem;
   margin-bottom: 1rem;
@@ -97,7 +94,6 @@
   line-height: 1.5;
 }
 
-/* Comentarios */
 .comments {
   margin-top: 3rem;
 }

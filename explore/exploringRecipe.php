@@ -1,7 +1,6 @@
 <<?php
 session_start();
 
-// Verificamos si el usuario está logueado
 if (!isset($_SESSION['username'])) {
     http_response_code(403);
     echo "Access denied. Please log in.";

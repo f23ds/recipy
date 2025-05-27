@@ -10,7 +10,6 @@ function loadComments() {
     });
 }
 
-//Mostrar sección comments de una receta
 function showComments(comments) {
   const contenedor = document.getElementById("comments");
   contenedor.innerHTML = "";
